@@ -8,31 +8,31 @@ class App extends Component {
       {
         name: 'The Falcon',
         lat: 52.122060,
-        lon: -1.403040,
+        lng: -1.403040,
         address: 'Warwick Road Warmington, Banbury OX17 1JJ'
       },
       {
         name: 'The Chequers',
         lat: 51.942820,
-        lon: -1.544950,
+        lng: -1.544950,
         address: 'Goddards Ln, Chipping Norton OX7 5NP'
       },
       {
         name: 'The Fox',
         lat: 51.939730,
-        lon: -1.542790,
+        lng: -1.542790,
         address: 'Chipping Norton OX7 5DD'
       },
       {
         name: 'The Three Pigeon\'s Inn',
         lat: 52.063600,
-        lon: -1.339780,
+        lng: -1.339780,
         address: '3 Southam Rd, Banbury OX16 2ED'
       },
       {
         name: 'The White Horse',
         lat: 52.021520,
-        lon: -1.275970,
+        lng: -1.275970,
         address: '2 The Square, King\'s Sutton, Banbury OX17 3RF'
       }
     ]
@@ -41,7 +41,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <MapContainer google={this.props.google} />
+        <MapContainer 
+          google={this.props.google}
+          locations={this.state.locations}
+        />
       </div>
     );
   }
