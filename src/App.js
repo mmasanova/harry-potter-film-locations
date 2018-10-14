@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { MapContainer } from '.\\components\\map-container';
 import { GoogleApiWrapper } from 'google-maps-react';
+import { ListView } from '.\\components\\listview';
+import './App.css';
 
 class App extends Component {
   state = {
@@ -49,11 +51,18 @@ class App extends Component {
   }
 
   render() {
+    const { locations } = this.state;
+
     return (
       <div className="App">
-        <MapContainer 
-          google={this.props.google}
-          locations={this.state.locations}
+        <div className="map-view">
+          <MapContainer
+            google={this.props.google}
+            locations={locations}
+          />
+        </div>
+        <ListView
+          locations={locations}
         />
       </div>
     );

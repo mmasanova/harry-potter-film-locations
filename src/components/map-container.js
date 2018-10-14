@@ -21,7 +21,7 @@ export class MapContainer extends Component {
 		const { locations, google } = this.props;
 
 		return (
-			<Map 
+			<Map
 				google={google}
 				initialCenter={{ lat: 52.060020, lng: -1.340450 }}
 				onReady={this.onMapReady}

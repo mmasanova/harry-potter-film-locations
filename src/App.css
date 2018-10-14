@@ -7,6 +7,9 @@ body {
   text-align: center;
   height: 100vh;
   width: 100vw;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
 }
 
 .App-logo {
@@ -29,11 +32,59 @@ body {
   color: #61dafb;
 }
 
+/* Map */
+
+.map-view {
+  height: 60vh;
+  position: relative;
+}
+
+/* ListView */
+
+.locations-view {
+  height: 40vh;
+}
+
+.locations {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  width: 100%;
+}
+
+.locations li {
+  height: 2.5em;
+  line-height: 2.5em;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+  padding: 0 0 0 1em;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .App {
+    flex-direction: row;
+  }
+
+  .map-view {
+    flex: 1 1;
+    order: 1;
+    width: 50vw;
+    height: 100vh;
+  }
+
+  .locations {
+    width: 50vw;
+    max-width: 300px;
+    flex: 1 1;
   }
 }
