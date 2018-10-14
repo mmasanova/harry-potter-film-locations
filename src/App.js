@@ -17,7 +17,8 @@ class App extends Component {
         },
         address: 'Warwick Road Warmington, Banbury OX17 1JJ',
         distance: 4.8,
-        travelTime: 9
+        travelTime: 9,
+        visible: true
       },
       {
         name: 'The Chequers',
@@ -27,7 +28,8 @@ class App extends Component {
         },
         address: 'Goddards Ln, Chipping Norton OX7 5NP',
         distance: 13,
-        travelTime: 22
+        travelTime: 22,
+        visible: true
       },
       {
         name: 'The Fox',
@@ -37,7 +39,8 @@ class App extends Component {
         },
         address: 'Chipping Norton OX7 5DD',
         distance: 13,
-        travelTime: 23
+        travelTime: 23,
+        visible: true
       },
       {
         name: 'The Three Pigeon\'s Inn',
@@ -47,7 +50,8 @@ class App extends Component {
         },
         address: '3 Southam Rd, Banbury OX16 2ED',
         distance: 0.3,
-        travelTime: 1
+        travelTime: 1,
+        visible: true
       },
       {
         name: 'The White Horse',
@@ -57,7 +61,8 @@ class App extends Component {
         },
         address: '2 The Square, King\'s Sutton, Banbury OX17 3RF',
         distance: 5,
-        travelTime: 12
+        travelTime: 12,
+        visible: true
       },
       {
         name: 'The Kitchen',
@@ -67,7 +72,8 @@ class App extends Component {
         },
         address: 'Main St, Farnborough OX17 1DZ',
         distance: 6.8,
-        travelTime: 13
+        travelTime: 13,
+        visible: true
       },
       {
         name: 'The George & Dragon',
@@ -77,7 +83,8 @@ class App extends Component {
         },
         address: '1 Thorpe Rd, Chacombe, Banbury OX17 2JW',
         distance: 3.9,
-        travelTime: 8
+        travelTime: 8,
+        visible: true
       },
       {
         name: 'The Fox At Farthinghoe',
@@ -87,9 +94,30 @@ class App extends Component {
         },
         address: 'Baker Street, Brackley NN13 5PH',
         distance: 9.9,
-        travelTime: 18
+        travelTime: 18,
+        visible: true
       }
     ]
+  }
+
+  updateFilterValue = (selectedValue) => {
+    this.setState(function(prevState) {
+      let locations = prevState.locations;
+
+      locations.forEach(location => {
+        if (selectedValue === '') {
+          location.visible = true;
+        }
+        else {
+          location.visible = location.travelTime <= selectedValue;
+        }
+      });
+
+      return {
+        filterValue: selectedValue,
+        locations: locations
+      }
+    });
   }
 
   render() {
@@ -104,7 +132,10 @@ class App extends Component {
           />
         </div>
         <div className="list">
-          <Filter value={filterValue}/>
+          <Filter 
+            value={filterValue}
+            onFilterSelect={this.updateFilterValue}
+          />
           <ListView
             locations={locations}
           />

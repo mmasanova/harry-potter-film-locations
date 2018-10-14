@@ -8,7 +8,7 @@ export class ListView extends Component  {
 			<ul className="locations">
 				{
 					locations.map(location => (
-						<li key={location.name}>{location.name}</li>
+						location.visible && <li key={location.name}>{location.name}</li>
 					))
 				}
 			</ul>

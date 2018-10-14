@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 export class Filter extends Component {
 	render() {
 		const times = [ 5, 10, 15, 20, 30 ]
+		const { value, onFilterSelect } = this.props;
 
 		return (
 			<div className="filter-container">
@@ -13,11 +14,12 @@ export class Filter extends Component {
 				</label>
 				<select 
 					id="travel-time-filter"
-					defaultValue={this.props.value}>
+					defaultValue={value}
+					onChange={(event) => onFilterSelect(event.target.value)}>
 				<option value="">Any</option>
 				{
 					times.map(time => (
-						<option key={time} value={time}>{time} minutes</option>
+						<option key={time} value={time}>Up to {time} minutes</option>
 					))
 				}
 				</select>
