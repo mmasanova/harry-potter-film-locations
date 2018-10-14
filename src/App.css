@@ -41,7 +41,7 @@ body {
 
 /* ListView */
 
-.locations-view {
+.list {
   height: 40vh;
 }
 
@@ -59,6 +59,40 @@ body {
   text-align: left;
   border-bottom: 1px solid #eee;
   padding: 0 0 0 1em;
+}
+
+/* Filter */
+
+.filter-container {
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  background: #CFD8DC;
+}
+
+#travel-time-filter-label {
+  width: 100%;
+  text-align: left;
+  padding: 0.3em 0 0 0.5em;
+  color: #455A64;
+}
+
+.filter-container select {
+  border-radius: 3px;
+  height: 1.8em;
+  margin: 0.5em 0 0 0.5em;
+  flex: 1 1;
+  border: 1px solid #455A64;
+}
+
+.filter-container button {
+  flex: 0 0 60px;
+  height: 1.8em;
+  margin: 0.5em;
+  border: 1px solid #455A64;
+  border-radius: 3px;
+  background: #607D8B;
+  color: #fff;
 }
 
 @keyframes App-logo-spin {
@@ -82,7 +116,7 @@ body {
     height: 100vh;
   }
 
-  .locations {
+  .list {
     width: 50vw;
     max-width: 300px;
     flex: 1 1;
