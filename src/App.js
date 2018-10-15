@@ -183,6 +183,7 @@ class App extends Component {
         <Map 
           map={this.state.map}
           locations={this.state.locations}
+          onMarkerClick={this.onMarkerClick}
         />
         <div className="list">
           <Filter 

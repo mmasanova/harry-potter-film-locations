@@ -24,7 +24,7 @@ export class Map extends Component {
 
 	render () {
 		//const { locations, google, onMapClick, onMarkerClick, showInfoWindow, activeMarker, activeLocation } = this.props;
-		const { locations, map } = this.props;
+		const { locations, map, onMarkerClick } = this.props;
 
 		return (
 			<div id="map" className="map-view">
@@ -36,6 +36,7 @@ export class Map extends Component {
 							key={location.id} 
 							map={map} 
 							position={location.position}
+							onClick={onMarkerClick}
 						/>
 					))
 				}

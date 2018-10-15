@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+const eventNames = [ 'click', 'mouseover' ];
+
 class Marker extends Component {
 	componentWillUnmount() {
 		if (this.marker) {
@@ -23,7 +25,6 @@ class Marker extends Component {
 
 	renderMarker() {
 		let { position, mapCenter, map, visible } = this.props;
-
 		let pos = position || mapCenter;
 		position = new window.google.maps.LatLng(pos);
 
@@ -33,11 +34,31 @@ class Marker extends Component {
 		};
 
 		this.marker = new window.google.maps.Marker(options);
+
+		eventNames.forEach(e => {
+			this.marker.addListener(e, this.handleEvent(e));
+		});
+	}
+
+	handleEvent(evt) {
+		return (e) => {
+			const eventName = `on${camelize(evt)}`
+
+			if (this.props[eventName]) {
+				this.props[eventName](this.props, this.marker, e);
+			}
+		}
 	}
 
 	render() {
 		return null;
 	}
+}
+
+const camelize = function(str) {
+  return str.split(' ').map(function(word){
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  }).join('');
 }
 
 Marker.propTypes = {
