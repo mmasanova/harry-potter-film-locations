@@ -26,14 +26,17 @@ export class MapContainer extends Component {
 				initialCenter={{ lat: 52.060020, lng: -1.340450 }}
 				onReady={this.onMapReady}
 				bounds={this.state.bounds}>
-				{ locations.map(location => (
-					<Marker 
-						position={location.position}
-						name={location.name}
-						title={location.name}
-						key={location.name}
-						visible={true} />
-				))}
+				{ 
+					locations
+					.filter(location => location.visible)
+					.map(location => (
+						<Marker 
+							position={location.position}
+							name={location.name}
+							title={location.name}
+							key={location.name} />
+					))
+				}
 			</Map>
 		)
 	}
