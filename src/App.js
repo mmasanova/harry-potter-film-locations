@@ -149,12 +149,6 @@ class App extends Component {
         else {
           location.visible = location.travelTime <= selectedValue;
         }
-
-        if (location.visible) {
-          location.marker.setMap(this.state.map);
-        } else {
-          location.marker.setMap(null);
-        }
       });
 
       return {

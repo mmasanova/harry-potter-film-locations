@@ -29,8 +29,11 @@ export class Map extends Component {
 		return (
 			<div id="map" className="map-view">
 				{
-					locations.map(location => (
-						<Marker 
+					locations
+					.map(location => (
+						<Marker
+							visible={location.visible}
+							key={location.id} 
 							map={map} 
 							position={location.position}
 						/>
