@@ -127,22 +127,21 @@ class App extends Component {
       zoom: 14
     });
 
-    const updatedLocations = this.state.locations.map(location => {
-      const marker = new window.google.maps.Marker({
-        position: location.position,
-        map: map
-      });
+    // const updatedLocations = this.state.locations.map(location => {
+    //   const marker = new window.google.maps.Marker({
+    //     position: location.position,
+    //     map: map
+    //   });
       
-      bounds.extend(marker.position);
-      location.marker = marker;
+    //   bounds.extend(marker.position);
+    //   location.marker = marker;
 
-      return location;
-    });
+    //   return location;
+    // });
 
-    map.fitBounds(bounds);
+    //map.fitBounds(bounds);
     this.setState({ 
-      map: map,
-      locations: updatedLocations
+      map: map
     });
   }
 
@@ -194,7 +193,10 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Map />
+        <Map 
+          map={this.state.map}
+          locations={this.state.locations}
+        />
         <div className="list">
           <Filter 
             value={filterValue}
