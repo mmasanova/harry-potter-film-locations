@@ -8,6 +8,8 @@ import './App.css';
 class App extends Component {
   state = {
     filterValue: '',
+    activeMarker: {},
+    showInfoWindow: false,
     locations: [
       {
         name: 'The Falcon',
@@ -120,8 +122,22 @@ class App extends Component {
     });
   }
 
+  onMarkerClick = (props, marker) => {
+    this.setState({ 
+      activeMarker: marker,
+      showInfoWindow: true
+    });
+  }
+
+  onMapClick = () => {
+    this.setState({
+      activeMarker: null,
+      showInfoWindow: false
+    });
+  }
+
   render() {
-    const { locations, filterValue } = this.state;
+    const { locations, filterValue, showInfoWindow, activeMarker } = this.state;
 
     return (
       <div className="App">
@@ -129,6 +145,10 @@ class App extends Component {
           <MapContainer
             google={this.props.google}
             locations={locations}
+            onMarkerClick={this.onMarkerClick}
+            showInfoWindow={showInfoWindow}
+            activeMarker={activeMarker}
+            onMapClick={this.onMapClick}
           />
         </div>
         <div className="list">
