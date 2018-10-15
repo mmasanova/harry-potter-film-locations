@@ -127,19 +127,12 @@ class App extends Component {
       zoom: 14
     });
 
-    // const updatedLocations = this.state.locations.map(location => {
-    //   const marker = new window.google.maps.Marker({
-    //     position: location.position,
-    //     map: map
-    //   });
-      
-    //   bounds.extend(marker.position);
-    //   location.marker = marker;
+    this.state.locations.forEach(location => {
+      bounds.extend(location.position);
+    });
 
-    //   return location;
-    // });
-
-    //map.fitBounds(bounds);
+    map.fitBounds(bounds);
+    
     this.setState({ 
       map: map
     });
