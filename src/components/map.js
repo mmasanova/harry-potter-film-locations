@@ -23,6 +23,7 @@ export class Map extends Component {
 
 	render () {
 		//const { locations, google, onMapClick, onMarkerClick, showInfoWindow, activeMarker, activeLocation } = this.props;
+		const { locations } = this.props;
 
 		return (
 			<div id="map" className="map-view">

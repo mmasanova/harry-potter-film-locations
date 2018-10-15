@@ -6,6 +6,7 @@ import './App.css';
 
 class App extends Component {
   state = {
+    map: null,
     filterValue: '',
     activeMarker: {},
     activeLocation: {},
@@ -120,9 +121,28 @@ class App extends Component {
   }
 
   initMap = () => {
+    let bounds = new window.google.maps.LatLngBounds();
     const map = new window.google.maps.Map(document.getElementById('map'), {
       center: { lat: 52.060020, lng: -1.340450 },
       zoom: 14
+    });
+
+    const updatedLocations = this.state.locations.map(location => {
+      const marker = new window.google.maps.Marker({
+        position: location.position,
+        map: map
+      });
+      
+      bounds.extend(marker.position);
+      location.marker = marker;
+
+      return location;
+    });
+
+    map.fitBounds(bounds);
+    this.setState({ 
+      map: map,
+      locations: updatedLocations
     });
   }
 
@@ -136,6 +156,12 @@ class App extends Component {
         }
         else {
           location.visible = location.travelTime <= selectedValue;
+        }
+
+        if (location.visible) {
+          location.marker.setMap(this.state.map);
+        } else {
+          location.marker.setMap(null);
         }
       });
 
