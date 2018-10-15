@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { MapContainer } from '.\\components\\map-container';
-import { GoogleApiWrapper } from 'google-maps-react';
+import { Map } from '.\\components\\map';
 import { ListView } from '.\\components\\listview';
 import { Filter } from '.\\components\\filter';
 import './App.css';
@@ -9,7 +8,8 @@ class App extends Component {
   state = {
     filterValue: '',
     activeMarker: {},
-    showInfoWindow: false,
+    activeLocation: {},
+    showInfoWindow: true,
     locations: [
       {
         name: 'The Falcon',
@@ -20,7 +20,8 @@ class App extends Component {
         address: 'Warwick Road Warmington, Banbury OX17 1JJ',
         distance: 4.8,
         travelTime: 9,
-        visible: true
+        visible: true,
+        id: '56b73675498e84344998645a'
       },
       {
         name: 'The Chequers',
@@ -31,7 +32,8 @@ class App extends Component {
         address: 'Goddards Ln, Chipping Norton OX7 5NP',
         distance: 13,
         travelTime: 22,
-        visible: true
+        visible: true,
+        id: '4e6265e42271573ad7988e6b'
       },
       {
         name: 'The Fox',
@@ -42,7 +44,8 @@ class App extends Component {
         address: 'Chipping Norton OX7 5DD',
         distance: 13,
         travelTime: 23,
-        visible: true
+        visible: true,
+        id: '4f7d91d2e4b0015bec9775d4'
       },
       {
         name: 'The Three Pigeon\'s Inn',
@@ -53,7 +56,8 @@ class App extends Component {
         address: '3 Southam Rd, Banbury OX16 2ED',
         distance: 0.3,
         travelTime: 1,
-        visible: true
+        visible: true,
+        id: '4d67d7592433a143963151e0'
       },
       {
         name: 'The White Horse',
@@ -64,7 +68,8 @@ class App extends Component {
         address: '2 The Square, King\'s Sutton, Banbury OX17 3RF',
         distance: 5,
         travelTime: 12,
-        visible: true
+        visible: true,
+        id: '4bf6dd0d5317a593b0f8fc7e'
       },
       {
         name: 'The Kitchen',
@@ -75,7 +80,8 @@ class App extends Component {
         address: 'Main St, Farnborough OX17 1DZ',
         distance: 6.8,
         travelTime: 13,
-        visible: true
+        visible: true,
+        id: '4c5712777329c9289c068e80'
       },
       {
         name: 'The George & Dragon',
@@ -86,7 +92,8 @@ class App extends Component {
         address: '1 Thorpe Rd, Chacombe, Banbury OX17 2JW',
         distance: 3.9,
         travelTime: 8,
-        visible: true
+        visible: true,
+        id: '4c6fc13b3444370482df215f'
       },
       {
         name: 'The Fox At Farthinghoe',
@@ -97,9 +104,26 @@ class App extends Component {
         address: 'Baker Street, Brackley NN13 5PH',
         distance: 9.9,
         travelTime: 18,
-        visible: true
+        visible: true,
+        id: ''
       }
     ]
+  }
+
+  componentDidMount() {
+    this.renderMap();
+  }
+
+  renderMap = () => {
+    loadScript('https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyDMPqq_XkqrIrZ2aMM34Ovk-DC-9GpCuxY&callback=initMap');
+    window.initMap = this.initMap;
+  }
+
+  initMap = () => {
+    const map = new window.google.maps.Map(document.getElementById('map'), {
+      center: { lat: 52.060020, lng: -1.340450 },
+      zoom: 14
+    });
   }
 
   updateFilterValue = (selectedValue) => {
@@ -125,32 +149,26 @@ class App extends Component {
   onMarkerClick = (props, marker) => {
     this.setState({ 
       activeMarker: marker,
-      showInfoWindow: true
+      showInfoWindow: true,
+      activeLocation: props.location
     });
   }
 
   onMapClick = () => {
     this.setState({
       activeMarker: null,
-      showInfoWindow: false
+      activeLocation: {},
+      showInfoWindow: false,
+      venueId: ''
     });
   }
 
   render() {
-    const { locations, filterValue, showInfoWindow, activeMarker } = this.state;
+    const { locations, filterValue, showInfoWindow, activeMarker, activeLocation } = this.state;
 
     return (
       <div className="App">
-        <div className="map-view">
-          <MapContainer
-            google={this.props.google}
-            locations={locations}
-            onMarkerClick={this.onMarkerClick}
-            showInfoWindow={showInfoWindow}
-            activeMarker={activeMarker}
-            onMapClick={this.onMapClick}
-          />
-        </div>
+        <Map />
         <div className="list">
           <Filter 
             value={filterValue}
@@ -165,6 +183,13 @@ class App extends Component {
   }
 }
 
-export default GoogleApiWrapper({
-  apiKey: ('AIzaSyDMPqq_XkqrIrZ2aMM34Ovk-DC-9GpCuxY')
-})(App)
+function loadScript(url) {
+  var firstScript = document.getElementsByTagName('script')[0];
+  var script = document.createElement('script');
+  script.src = url;
+  script.async = true;
+  script.defer = true;
+  firstScript.parentNode.insertBefore(script, firstScript);
+}
+
+export default App;

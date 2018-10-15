@@ -1,23 +1,42 @@
 import React, { Component } from 'react';
 
-export class PlaceDetail extends Component {
+class PlaceDetail extends Component {
 	state = {
-		data: {}
+		data: {},
+		venueId: ''
 	}
 
-	// componentDidMount() {
-	// 	fetch('https://api.foursquare.com/v2/venues/56b73675498e84344998645a?client_id=LXGA0JVZIPS4YMLFKR51V5KEFQJZ4ILY33LW4J4RTZQBLT42&client_secret=LNSDFUA5TWGXOQRM45LB44W4R1KWL0QI25R4YOHP1AFYNLER&v=20181015')
-	//     .then(response => response.json())
-	//     .then(data => this.setState({ data: data}));
-	// }
+	componentDidMount() {
+		console.log('mount!')
+		alert('hey!!')
+	}
+
+	componentDidUpdate(prevProps) {
+		console.log('update! ', prevProps, this)
+		// if (prevProps.venueId !== this.state.venueId) {
+		// 	console.log('fetching...');
+		// 	const clientId = 'LXGA0JVZIPS4YMLFKR51V5KEFQJZ4ILY33LW4J4RTZQBLT42';
+		// 	const clientSecret = 'LNSDFUA5TWGXOQRM45LB44W4R1KWL0QI25R4YOHP1AFYNLER'
+		// 	const venueId = '56b73675498e84344998645a';
+		// 	const url = `https://api.foursquare.com/v2/venues/${venueId}?client_id=${clientId}&client_secret=${clientSecret}&v=20181015`;
+
+		// 	fetch(url)
+		//     .then(response => response.json())
+		//     .then(data => this.setState({ data: data}));
+		// }
+	}
 
 	render() {
-		const { data } = this.state;
+		// const { data } = this.state;
+		// const venue = data.venue ? data.venue : 'N/A';
+		const { location } = this.props;
 
 		return (
 			<div>
-				<h1>Name</h1>
+				<h1>{location.name}</h1>
 			</div>
 		)
 	}
 }
+
+export default PlaceDetail;
