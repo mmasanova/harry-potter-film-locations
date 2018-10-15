@@ -16,14 +16,13 @@ export class Filter extends Component {
 					id="travel-time-filter"
 					defaultValue={value}
 					onChange={(event) => onFilterSelect(event.target.value)}>
-				<option value="">Any</option>
-				{
-					times.map(time => (
-						<option key={time} value={time}>Up to {time} minutes</option>
-					))
-				}
+					<option value="">Any</option>
+					{
+						times.map(time => (
+							<option key={time} value={time}>Up to {time} minutes</option>
+						))
+					}
 				</select>
-				<button>Filter</button>
 			</div>
 		)
 	}
