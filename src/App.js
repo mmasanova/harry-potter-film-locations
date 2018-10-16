@@ -12,6 +12,16 @@ class App extends Component {
     activeMarker: {},
     activeLocation: {},
     showInfoWindow: true,
+    movies: [
+      { value: 1, name: 'Harry Potter and the Philosopher\'s Stone' },
+      { value: 2, name: 'Harry Potter and the Chamber of Secrets' },
+      { value: 3, name: 'Harry Potter and the Prisoner of Azkaban' },
+      { value: 4, name: 'Harry Potter and the Goblet of Fire' },
+      { value: 5, name: 'Harry Potter and the Order of the Phoenix' },
+      { value: 6, name: 'Harry Potter and the Half-Blood Prince' },
+      { value: 7, name: 'Harry Potter and the Deathly Hallows Part 1' },
+      { value: 8, name: 'Harry Potter and the Deathly Hallows Part 2' }
+    ],
     locations: [
       {
         name: 'Australia House',
@@ -270,7 +280,7 @@ class App extends Component {
           location.visible = true;
         }
         else {
-          location.visible = location.travelTime <= selectedValue;
+          location.visible = location.movie.includes(parseInt(selectedValue));
         }
       });
 
@@ -306,7 +316,8 @@ class App extends Component {
       activeMarker, 
       activeLocation,
       mapCenter,
-      map
+      map,
+      movies
     } = this.state;
 
     return (
@@ -322,9 +333,12 @@ class App extends Component {
           showInfoWindow={showInfoWindow}
         />
         <div className="list">
-          <Filter 
+          <Filter
+            id="location-filter"
+            title="Filter by Movie"
             value={filterValue}
             onFilterSelect={this.updateFilterValue}
+            options={movies}
           />
           <ListView
             locations={locations}

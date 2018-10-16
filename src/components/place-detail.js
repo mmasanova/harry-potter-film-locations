@@ -69,24 +69,21 @@ class PlaceDetail extends Component {
 				{!venueInfo.name && <span>Loading detail...</span>}
 				{venueInfo.name &&
 					<div id="venue-info">
-						{ venueInfo.location && venueInfo.location.formattedAddress &&
-							<div id="address">
-								<label for="venue-address">Address:</label>
-								<div id="venue-address">
-									{
-										venueInfo.location.formattedAddress.map(line => {
-											return (
-												<div>{line}</div>)
-										})
-									}
+						{venueInfo.contact && venueInfo.contact.formattedPhone &&
+							<div id="contact-info">
+								<label htmlFor="venue-contact">Contact:</label>
+								<div id="venue-contact">
+									{venueInfo.contact.formattedPhone}
 								</div>
 							</div>
 						}
-						{venueInfo.contact && venueInfo.contact.formattedPhone &&
-							<div id="contact-info">
-								<label for="venue-contact">Contact:</label>
-								<div id="venue-contact">
-									{venueInfo.contact.formattedPhone}
+						{ venueInfo.location && venueInfo.location.formattedAddress &&
+							<div id="address">
+								<label htmlFor="venue-address">Address:</label>
+								<div id="venue-address">
+									{
+										venueInfo.location.formattedAddress.join(', ')
+									}
 								</div>
 							</div>
 						}
