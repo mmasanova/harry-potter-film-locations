@@ -14,100 +14,210 @@ class App extends Component {
     showInfoWindow: true,
     locations: [
       {
-        name: 'The Falcon',
+        name: 'Australia House',
         position: {
-          lat: 52.122060,
-          lng: -1.403040
+          lat: 51.51037,
+          lng: -0.12157
         },
-        address: 'Warwick Road Warmington, Banbury OX17 1JJ',
-        distance: 4.8,
-        travelTime: 9,
         visible: true,
-        id: '56b73675498e84344998645a'
+        id: '4ad31fe9f964a52023e320e3',
+        movie: [ 1 ]
       },
       {
-        name: 'The Chequers',
+        name: 'King\'s Cross Station',
         position: {
-          lat: 51.942820,
-          lng: -1.544950
+          lat: 51.530586,
+          lng: -0.12447212
         },
-        address: 'Goddards Ln, Chipping Norton OX7 5NP',
-        distance: 13,
-        travelTime: 22,
         visible: true,
-        id: '4e6265e42271573ad7988e6b'
+        id: '4af33684f964a520c7eb21e3',
+        movie: [ 1, 2, 3, 4, 5, 6, 7, 8 ]
       },
       {
-        name: 'The Fox',
+        name: 'Millennium Bridge',
         position: {
-          lat: 51.939730,
-          lng: -1.542790
+          lat: 51.50947,
+          lng: -0.098558
         },
-        address: 'Chipping Norton OX7 5DD',
-        distance: 13,
-        travelTime: 23,
         visible: true,
-        id: '4f7d91d2e4b0015bec9775d4'
+        id: '4ac518cef964a52022a620e3',
+        movie: [ 6 ]
       },
       {
-        name: 'The Three Pigeon\'s Inn',
+        name: 'London City Hall',
         position: {
-          lat: 52.063600,
-          lng: -1.339780
+          lat: 51.505238,
+          lng: -0.079039335
         },
-        address: '3 Southam Rd, Banbury OX16 2ED',
-        distance: 0.3,
-        travelTime: 1,
         visible: true,
-        id: '4d67d7592433a143963151e0'
+        id: '4b460230f964a520131426e3',
+        movie: [ 6 ]
       },
       {
-        name: 'The White Horse',
+        name: 'Great Scotland Yard',
         position: {
-          lat: 52.021520,
-          lng: -1.275970
+          lat: 51.506222,
+          lng: -0.126169
         },
-        address: '2 The Square, King\'s Sutton, Banbury OX17 3RF',
-        distance: 5,
-        travelTime: 12,
         visible: true,
-        id: '4bf6dd0d5317a593b0f8fc7e'
+        id: '547b6c2d498e3f5770072260',
+        movie: [ 6 ]
       },
       {
-        name: 'The Kitchen',
+        name: 'Claremont Square',
         position: {
-          lat: 52.144480,
-          lng: -1.367400
+          lat: 51.5308,
+          lng: -0.11031389
         },
-        address: 'Main St, Farnborough OX17 1DZ',
-        distance: 6.8,
-        travelTime: 13,
         visible: true,
-        id: '4c5712777329c9289c068e80'
+        id: '51ea867e5019f55eb85cf0dd',
+        movie: [ 5, 7 ]
       },
       {
-        name: 'The George & Dragon',
+        name: 'Piccadilly Circus',
         position: {
-          lat: 52.090890,
-          lng: -1.283480
+          lat: 51.51001,
+          lng: -0.13459364
         },
-        address: '1 Thorpe Rd, Chacombe, Banbury OX17 2JW',
-        distance: 3.9,
-        travelTime: 8,
         visible: true,
-        id: '4c6fc13b3444370482df215f'
+        id: '4c9c6a059c48236a1cb14dee',
+        movie: [ 7 ]
       },
       {
-        name: 'The Fox At Farthinghoe',
+        name: 'Leadenhall Market',
         position: {
-          lat: 52.052860,
-          lng: -1.221160
+          lat: 51.51282,
+          lng: -0.08343618
         },
-        address: 'Baker Street, Brackley NN13 5PH',
-        distance: 9.9,
-        travelTime: 18,
         visible: true,
-        id: ''
+        id: '4ac518eff964a52062ad20e3',
+        movie: [ 1 ]
+      },
+      {
+        name: 'Reptile House, London Zoo',
+        position: {
+          lat: 51.535645,
+          lng: -0.15573978
+        },
+        visible: true,
+        id: '4dd912d3d1647fcf3e72035f',
+        movie: [ 1 ]
+      },
+      {
+        name: 'St. Pancras Renaissance Hotel',
+        position: {
+          lat: 51.529972,
+          lng: -0.125404
+        },
+        visible: true,
+        id: '4d00c69af1605481dce59fea',
+        movie: [ 1 ]
+      },
+      {
+        name: 'Durham Cathedral',
+        position: {
+          lat: 54.772405,
+          lng: -1.576418
+        },
+        visible: true,
+        id: '4b6e9b65f964a520cbc32ce3',
+        movie: [ 1, 2, 3 ]
+      },
+      {
+        name: 'Alnwick Castle',
+        position: {
+          lat: 55.415726,
+          lng: -1.7060995
+        },
+        visible: true,
+        id: '4b6eaf28f964a52080c62ce3',
+        movie: [ 1, 2 ]
+      },
+      {
+        name: 'Malham Cove',
+        position: {
+          lat: 54.0607,
+          lng: -2.1537
+        },
+        visible: true,
+        id: '4c0a77d27e3fc928cb9af382',
+        movie: [ 7 ]
+      },
+      {
+        name: 'New College',
+        position: {
+          lat: 51.754994,
+          lng: -1.251768
+        },
+        visible: true,
+        id: '4beae24a4f5576b04435b396',
+        movie: [ 4 ]
+      },
+      {
+        name: 'Lacock Abbey',
+         position: {
+          lat: 51.414684,
+          lng: -2.1212082
+        },
+        visible: true,
+        id: '4bf3cf3c6ba2b713362f8977',
+        movie: [ 1, 2 ]
+      },
+      {
+        name: 'Virginia Water',
+         position: {
+          lat: 51.410316,
+          lng: -0.592274
+        },
+        visible: true,
+        id: '4b5c6295f964a5207b2d29e3',
+        movie: [ 3, 4 ]
+      },
+      {
+        name: 'Goathland Train Station',
+         position: {
+          lat: 54.405403,
+          lng: -0.696376
+        },
+        visible: true,
+        id: '4c7e554701589521cbcd0863',
+        movie: [ 1 ]
+      },{
+        name: 'Ashridge Wood',
+        position: {
+          lat: 51.418987,
+          lng: -0.825477
+        },
+        visible: true,
+        id: '4baf73c3f964a520eb003ce3',
+        movie: [ 4 ]
+      },{
+        name: 'Seven Sisters Country Park',
+        position: {
+          lat: 50.771173,
+          lng: 0.165405
+        },
+        visible: true,
+        id: '4bc9a7290687ef3b2e3bdacc',
+        movie: [ 4 ]
+      },{
+        name: 'Hardwick Hall',
+        position: {
+          lat: 53.1665647314269,
+          lng: -1.30997173157461
+        },
+        visible: true,
+        id: '4bc089b7abf495219259bf93',
+        movie: [ 7, 8 ]
+      },{
+        name: 'Gloucester Cathedral',
+        position: {
+          lat: 51.866571,
+          lng: -2.246986
+        },
+        visible: true,
+        id: '4b8a755ff964a520946d32e3',
+        movie: [ 1, 2, 3 ]
       }
     ]
   }
