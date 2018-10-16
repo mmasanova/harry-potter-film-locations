@@ -1,14 +1,29 @@
 import React, { Component } from 'react';
 
 export class ListView extends Component  {
+	
+	componentDidUpdate(prevProps) {
+		if (prevProps.activeLocation !== this.props.activeLocation) {
+			const location = this.props.activeLocation;
+			const selectedLi = document.getElementById(location.id)
+
+			if (selectedLi) selectedLi.scrollIntoView();
+		}
+	}
+
 	render() {
-		const { locations } = this.props;
+		const { locations, activeLocation } = this.props;
 
 		return (
 			<ul className="locations">
 				{
 					locations.map(location => (
-						location.visible && <li key={location.name}>{location.name}</li>
+						location.visible && 
+						<li 
+							id={location.id}
+							key={location.name}
+							className={location.id === activeLocation.id ? 'active-location' : ''}
+						>{location.name}</li>
 					))
 				}
 			</ul>

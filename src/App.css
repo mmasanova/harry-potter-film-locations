@@ -67,6 +67,10 @@ html, body {
   padding: 0 0 0 1em;
 }
 
+.active-location {
+  background: gray;
+}
+
 /* Filter */
 
 .filter-container {

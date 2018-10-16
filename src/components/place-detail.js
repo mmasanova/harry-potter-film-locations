@@ -48,8 +48,11 @@ class PlaceDetail extends Component {
 		fetch(url)
 	    .then(response => response.json())
 	    .then(data => {
-
-	    	this.setState({ venueInfo: data.response.venue });
+	    	if (data && data.meta && data.meta.code === 200) {
+	    		this.setState({ venueInfo: data.response.venue });
+	    	} else {
+	    		this.setState({ venueInfo: { error: true } });
+	    	}
 	    });
 	    //.then(data => this.setState({ data: data}));
 		
@@ -63,10 +66,11 @@ class PlaceDetail extends Component {
 
 		return (
 			<div>
-				{location && 
+				{location &&
 					<h2>{venueInfo.name || location.name}</h2>
 				}
-				{!venueInfo.name && <span>Loading detail...</span>}
+				{venueInfo.error && <span>Details could not be loaded.</span>}
+				{!venueInfo.name && !venueInfo.error && <span>Loading detail...</span>}
 				{venueInfo.name &&
 					<div id="venue-info">
 						{venueInfo.contact && venueInfo.contact.formattedPhone &&

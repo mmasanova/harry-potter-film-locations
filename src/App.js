@@ -342,6 +342,7 @@ class App extends Component {
           />
           <ListView
             locations={locations}
+            activeLocation={activeLocation}
           />
         </div>
       </div>
