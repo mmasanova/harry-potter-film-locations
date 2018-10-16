@@ -7,6 +7,7 @@ import './App.css';
 class App extends Component {
   state = {
     map: null,
+    mapCenter: { lat: 52.060020, lng: -1.340450 },
     filterValue: '',
     activeMarker: {},
     activeLocation: {},
@@ -120,22 +121,34 @@ class App extends Component {
     window.initMap = this.initMap;
   }
 
+  /**
+  * @description Initialises a google maps map object and stores its reference in state
+  */
   initMap = () => {
-    let bounds = new window.google.maps.LatLngBounds();
     const map = new window.google.maps.Map(document.getElementById('map'), {
-      center: { lat: 52.060020, lng: -1.340450 },
+      center: this.state.mapCenter,
       zoom: 14
     });
+
+    this.setMapBounds(map);
+    
+    this.setState({ 
+      map: map
+    });
+  }
+
+  /**
+  * @description Sets map boundaries to include all markers
+  * @param {google.maps.Map} - google.maps.Map instance which boundaries will be set
+  */
+  setMapBounds = (map) => {
+    let bounds = new window.google.maps.LatLngBounds();
 
     this.state.locations.forEach(location => {
       bounds.extend(location.position);
     });
 
     map.fitBounds(bounds);
-    
-    this.setState({ 
-      map: map
-    });
   }
 
   updateFilterValue = (selectedValue) => {
@@ -166,7 +179,7 @@ class App extends Component {
     });
   }
 
-  onMapClick = () => {
+  clearActiveMarker = () => {
     this.setState({
       activeMarker: null,
       activeLocation: {},
@@ -176,14 +189,27 @@ class App extends Component {
   }
 
   render() {
-    const { locations, filterValue, showInfoWindow, activeMarker, activeLocation } = this.state;
+    const { 
+      locations, 
+      filterValue, 
+      showInfoWindow, 
+      activeMarker, 
+      activeLocation,
+      mapCenter,
+      map
+    } = this.state;
 
     return (
       <div className="App">
         <Map 
-          map={this.state.map}
-          locations={this.state.locations}
+          map={map}
+          locations={locations}
           onMarkerClick={this.onMarkerClick}
+          onInfoWindowClose={this.clearActiveMarker}
+          mapCenter={mapCenter}
+          activeMarker={activeMarker}
+          activeLocation={activeLocation}
+          showInfoWindow={showInfoWindow}
         />
         <div className="list">
           <Filter 
@@ -199,6 +225,10 @@ class App extends Component {
   }
 }
 
+/** 
+* @description loads external script asynchronously
+* @param {string} url - The url to load
+*/
 function loadScript(url) {
   var firstScript = document.getElementsByTagName('script')[0];
   var script = document.createElement('script');

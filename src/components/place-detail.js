@@ -33,7 +33,9 @@ class PlaceDetail extends Component {
 
 		return (
 			<div>
-				<h1>{location.name}</h1>
+				{location && 
+					<h1>{location.name}</h1>
+				}
 			</div>
 		)
 	}

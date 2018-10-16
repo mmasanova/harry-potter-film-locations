@@ -1,30 +1,32 @@
 import React, { Component } from 'react';
-import PlaceDetail from '.\\place-detail';
 import Marker from '.\\marker'
+import InfoWindow from '.\\info-window';
+import PlaceDetail from '.\\place-detail';
+import ReactDom from 'react-dom';
 
 export class Map extends Component {
 	state = {
 		bounds: {}
 	}
 
-	// onMapReady(mapProps, map) {
-	// 	// Set map bounds in order to display all markers
-	// 	const markers = mapProps.children[0];
-
-	// 	if (markers) {
-	// 		let bounds = new window.google.maps.LatLngBounds();
-
-	// 		markers.forEach(marker => {
-	// 			bounds.extend(marker.props.position);
-	// 		});
-
-	// 		map.fitBounds(bounds);
-	// 	}
-	// }
+	/**
+	* @description update the content inside the info window
+	*/
+	onInfoWindowReady() {
+		const contentDiv = document.getElementById('info-window-content');
+		ReactDom.render(<PlaceDetail location={this.location} />, contentDiv);
+	}
 
 	render () {
-		//const { locations, google, onMapClick, onMarkerClick, showInfoWindow, activeMarker, activeLocation } = this.props;
-		const { locations, map, onMarkerClick } = this.props;
+		const { 
+			locations, 
+			map, 
+			onMarkerClick, 
+			mapCenter, 
+			activeMarker, 
+			showInfoWindow, 
+			activeLocation, 
+			onInfoWindowClose } = this.props;
 
 		return (
 			<div id="map" className="map-view">
@@ -34,12 +36,22 @@ export class Map extends Component {
 						<Marker
 							visible={location.visible}
 							key={location.id} 
-							map={map} 
+							map={map}
+							mapCenter={mapCenter}
 							position={location.position}
+							location={location}
 							onClick={onMarkerClick}
 						/>
 					))
 				}
+				<InfoWindow 
+					marker={activeMarker}
+					map={map}
+					visible={showInfoWindow}
+					location={activeLocation}
+					onDomready={this.onInfoWindowReady}
+					onCloseclick={onInfoWindowClose}>
+				</InfoWindow>
 			</div>
 		)
 	}
