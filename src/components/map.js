@@ -26,7 +26,9 @@ export class Map extends Component {
 			activeMarker, 
 			showInfoWindow, 
 			activeLocation, 
-			onInfoWindowClose } = this.props;
+			onInfoWindowClose,
+			onMarkerCreated
+		} = this.props;
 
 		return (
 			<div id="map" className="map-view">
@@ -41,6 +43,7 @@ export class Map extends Component {
 							position={location.position}
 							location={location}
 							onClick={onMarkerClick}
+							onCreate={onMarkerCreated}
 						/>
 					))
 				}

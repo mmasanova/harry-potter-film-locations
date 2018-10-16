@@ -12,7 +12,7 @@ export class ListView extends Component  {
 	}
 
 	render() {
-		const { locations, activeLocation } = this.props;
+		const { locations, activeLocation, itemClick } = this.props;
 
 		return (
 			<ul className="locations">
@@ -23,6 +23,7 @@ export class ListView extends Component  {
 							id={location.id}
 							key={location.name}
 							className={location.id === activeLocation.id ? 'active-location' : ''}
+							onClick={() => itemClick(location.id)}
 						>{location.name}</li>
 					))
 				}

@@ -24,7 +24,7 @@ class Marker extends Component {
 	}
 
 	renderMarker() {
-		let { position, mapCenter, map, visible } = this.props;
+		let { position, mapCenter, map, visible, onCreate } = this.props;
 		let pos = position || mapCenter;
 		position = new window.google.maps.LatLng(pos);
 
@@ -34,6 +34,10 @@ class Marker extends Component {
 		};
 
 		this.marker = new window.google.maps.Marker(options);
+
+		if (onCreate) {
+			onCreate(this.props, this.marker);
+		}
 
 		eventNames.forEach(e => {
 			this.marker.addListener(e, this.handleEvent(e));
@@ -63,7 +67,8 @@ const camelize = function(str) {
 
 Marker.propTypes = {
 	position: PropTypes.object,
-	map: PropTypes.object
+	map: PropTypes.object,
+	onCreate: PropTypes.func
 }
 
 export default Marker;

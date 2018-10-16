@@ -299,6 +299,36 @@ class App extends Component {
     });
   }
 
+  onListItemClick = (locationId) => {
+    const locations = this.state.locations;
+    const locationIndex = locations.findIndex(loc => loc.id === locationId);
+
+    if (locationIndex !== -1) {
+      const location = locations[locationIndex];
+
+      this.onMarkerClick({
+        location: location
+      }, location.marker);
+    }
+  }
+
+  onMarkerCreated = (props, marker) => {
+    const { location } = props;
+
+    this.setState(function(prevState) {
+      let locations = prevState.locations;
+
+      const locationIndex = locations.findIndex(loc => loc.id === location.id);
+
+      if (locationIndex !== -1) {
+        locations[locationIndex].marker = marker;
+      }
+
+      return { locations: locations };
+    });
+    console.log(props, marker);
+  }
+
   clearActiveMarker = () => {
     this.setState({
       activeMarker: null,
@@ -326,6 +356,7 @@ class App extends Component {
           map={map}
           locations={locations}
           onMarkerClick={this.onMarkerClick}
+          onMarkerCreated={this.onMarkerCreated}
           onInfoWindowClose={this.clearActiveMarker}
           mapCenter={mapCenter}
           activeMarker={activeMarker}
@@ -343,6 +374,7 @@ class App extends Component {
           <ListView
             locations={locations}
             activeLocation={activeLocation}
+            itemClick={this.onListItemClick}
           />
         </div>
       </div>
