@@ -3,7 +3,8 @@ import { Map } from './components/map';
 import { ListView } from './components/listview';
 import { Filter } from './components/filter';
 import Heading from './components/heading';
-import DetailWindow from './components/detail-window'
+import DetailWindow from './components/detail-window';
+import activeIcon from './icons/place.svg';
 import './App.css';
 import data from './data';
 
@@ -42,7 +43,7 @@ class App extends Component {
       zoom: 14
     });
 
-    map.addListener('click', this.clearActive);
+    map.addListener('click', this.clearActiveMarker);
 
     this.setMapBounds(map);
     
@@ -92,9 +93,16 @@ class App extends Component {
       activeLocation: props.location,
       scrollItemToView: true
     });
+
+    this.toogleMarkerBounce(marker, true);
+    this.setMarkerIcon(marker, true);
   }
 
-  clearActive = () => {
+  clearActiveMarker = () => {
+    const { activeMarker } = this.state;
+    this.toogleMarkerBounce(activeMarker, false);
+    this.setMarkerIcon(activeMarker, false);
+
     this.setState({
       activeMarker: null,
       activeLocation: {},
@@ -120,6 +128,25 @@ class App extends Component {
     });
   }
 
+  toogleMarkerBounce = (marker, bounce) => {
+    if (bounce) {
+      marker.setAnimation(window.google.maps.Animation.BOUNCE);
+    } else {
+      if (marker.getAnimation() !== null) {
+        marker.setAnimation(null);
+      }
+    }
+  }
+
+  setMarkerIcon(marker, active) {
+    //return;
+    if (active) {
+      marker.setIcon(activeIcon);
+    } else {
+      marker.setIcon(null);
+    }
+  }
+
   onMarkerCreated = (props, marker) => {
     const { location } = props;
 
@@ -133,15 +160,6 @@ class App extends Component {
       }
 
       return { locations: locations };
-    });
-  }
-
-  clearActiveMarker = () => {
-    this.setState({
-      activeMarker: null,
-      activeLocation: {},
-      showInfoWindow: false,
-      venueId: ''
     });
   }
 
@@ -217,7 +235,7 @@ class App extends Component {
                 venueInfo={venueInfo} 
                 clientId={this.clientId}
                 locationName={activeLocation ? activeLocation.name : ''}
-                onCloseClick={this.clearActive}
+                onCloseClick={this.clearActiveMarker}
               />
           }
         </div>
