@@ -250,6 +250,8 @@ class App extends Component {
       zoom: 14
     });
 
+    map.addListener('click', this.onMapClick);
+
     this.setMapBounds(map);
     
     this.setState({ 
@@ -296,6 +298,14 @@ class App extends Component {
       activeMarker: marker,
       showInfoWindow: true,
       activeLocation: props.location
+    });
+  }
+
+  onMapClick = () => {
+    this.setState({
+      activeMarker: null,
+      activeLocation: {},
+      showInfoWindow: false
     });
   }
 
