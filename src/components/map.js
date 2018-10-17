@@ -14,7 +14,14 @@ export class Map extends Component {
 	*/
 	onInfoWindowReady() {
 		const contentDiv = document.getElementById('info-window-content');
-		ReactDom.render(<PlaceDetail location={this.location} />, contentDiv);
+		ReactDom.render((
+			<PlaceDetail 
+				location={this.location}
+				venueInfo={this.venueInfo} 
+				onInfoWindowUpdate={this.onInfoWindowUpdate}
+				clientId={this.clientId}
+			/>
+		), contentDiv);
 	}
 
 	render () {
@@ -27,7 +34,10 @@ export class Map extends Component {
 			showInfoWindow, 
 			activeLocation, 
 			onInfoWindowClose,
-			onMarkerCreated
+			onInfoWindowUpdate,
+			onMarkerCreated,
+			venueInfo,
+			clientId
 		} = this.props;
 
 		return (
@@ -53,7 +63,10 @@ export class Map extends Component {
 					visible={showInfoWindow}
 					location={activeLocation}
 					onDomready={this.onInfoWindowReady}
-					onCloseclick={onInfoWindowClose}>
+					onCloseclick={onInfoWindowClose}
+					venueInfo={venueInfo}
+					onInfoWindowUpdate={onInfoWindowUpdate}
+					clientId={clientId}>
 				</InfoWindow>
 			</div>
 		)

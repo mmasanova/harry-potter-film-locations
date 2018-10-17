@@ -125,6 +125,11 @@ html, body {
   max-width: 70vw;
 }
 
+.place-detail a {
+  color: #6B0000;
+  cursor: pointer;
+}
+
 #venue-info label {
   float: left;
   padding: 0 1em 0 0;

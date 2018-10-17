@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Heading extends Component {
 	render() {
 		return (
-			<div class="heading">
+			<div className="heading">
 				<h1>{this.props.title}</h1>
 			</div>
 		)

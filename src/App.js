@@ -3,6 +3,7 @@ import { Map } from './components/map';
 import { ListView } from './components/listview';
 import { Filter } from './components/filter';
 import Heading from './components/heading';
+import DetailWindow from './components/detail-window'
 import './App.css';
 import data from './data';
 
@@ -11,13 +12,17 @@ class App extends Component {
     map: null,
     mapCenter: { lat: 52.060020, lng: -1.340450 },
     filterValue: '',
-    activeMarker: {},
+    activeMarker: null,
     activeLocation: {},
+    venueInfo: {},
     showInfoWindow: true,
     scrollItemToView: false,
     movies: data.movies,
     locations: data.locations
   }
+
+  clientId = 'LXGA0JVZIPS4YMLFKR51V5KEFQJZ4ILY33LW4J4RTZQBLT42';
+  clientSecret = 'LNSDFUA5TWGXOQRM45LB44W4R1KWL0QI25R4YOHP1AFYNLER';
 
   componentDidMount() {
     this.renderMap();
@@ -140,6 +145,24 @@ class App extends Component {
     });
   }
 
+  fetchLocationDetail = (id) => {
+    console.log('fetching: ' + id)
+    //return;
+    const url = `https://api.foursquare.com/v2/venues/${id}?client_id=${this.clientId}&client_secret=${this.clientSecret}&v=20181015`;
+
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        if (data && data.meta && data.meta.code === 200) {
+          this.setState({ venueInfo: data.response.venue });
+        } else {
+          this.setState({ venueInfo: { error: true } });
+        }
+      });
+      //.then(data => this.setState({ data: data}));
+    
+  }
+
   render() {
     const { 
       locations, 
@@ -150,7 +173,8 @@ class App extends Component {
       activeLocation,
       mapCenter,
       map,
-      movies
+      movies,
+      venueInfo
     } = this.state;
 
     return (
@@ -166,23 +190,31 @@ class App extends Component {
             mapCenter={mapCenter}
             activeMarker={activeMarker}
             activeLocation={activeLocation}
+            venueInfo={venueInfo}
             showInfoWindow={showInfoWindow}
+            onInfoWindowUpdate={this.fetchLocationDetail}
+            clientId={this.clientId}
           />
-          <div className="list">
-            <Filter
-              id="location-filter"
-              title="Filter by Movie"
-              value={filterValue}
-              onFilterSelect={this.updateFilterValue}
-              options={movies}
-            />
-            <ListView
-              locations={locations}
-              activeLocation={activeLocation}
-              itemClick={this.onListItemClick}
-              scrollToView={scrollItemToView}
-            />
-          </div>
+          { !activeMarker && 
+            <div className="list">
+              <Filter
+                id="location-filter"
+                title="Filter by Movie"
+                value={filterValue}
+                onFilterSelect={this.updateFilterValue}
+                options={movies}
+              />
+              <ListView
+                locations={locations}
+                activeLocation={activeLocation}
+                itemClick={this.onListItemClick}
+                scrollToView={scrollItemToView}
+              />
+            </div>
+          }
+          { activeMarker &&
+              <DetailWindow />
+          }
         </div>
       </div>
     );

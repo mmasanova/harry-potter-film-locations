@@ -10,6 +10,11 @@ class InfoWindow extends Component {
 			this.props.marker !== prevProps.marker) {
 			this.props.visible ? this.openWindow() : this.closeWindow();
 		}
+
+		if (this.props.venueInfo !== prevProps.venueInfo) {
+			// Update the info window content (using ReactDom.render)
+			this.props.onDomready(this.props);
+		}
 	}
 
 	openWindow() {

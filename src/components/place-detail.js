@@ -2,78 +2,41 @@ import React, { Component } from 'react';
 
 class PlaceDetail extends Component {
 	state = {
-		venueInfo: {},
-		venueId: ''
+		venueInfo: {}
 	}
 
 	componentDidMount() {
-		console.log('mount!', this)
-
-		if (this.props.location && this.props.location.id) {
-			this.fetchLocationDetail(this.props.location.id);
-		}
+		const { location, onInfoWindowUpdate } = this.props;
+		
+		if (location && location.id) onInfoWindowUpdate(location.id);
 	}
 
 	componentDidUpdate(prevProps) {
-		console.log('update! ', prevProps, this)
 		const prevLocation = prevProps.location ? prevProps.location : {};
 		const currLocation = this.props.location ? this.props.location : {};
 
 		if (prevLocation.id !== currLocation.id) {
-			this.setState({
-				venueInfo: {}
-			});
-
-			this.fetchLocationDetail(currLocation.id);
+			this.props.onInfoWindowUpdate(currLocation.id);
 		}
-		// if (prevProps.venueId !== this.state.venueId) {
-		// 	console.log('fetching...');
-		// 	const clientId = 'LXGA0JVZIPS4YMLFKR51V5KEFQJZ4ILY33LW4J4RTZQBLT42';
-		// 	const clientSecret = 'LNSDFUA5TWGXOQRM45LB44W4R1KWL0QI25R4YOHP1AFYNLER'
-		// 	const venueId = '56b73675498e84344998645a';
-		// 	const url = `https://api.foursquare.com/v2/venues/${venueId}?client_id=${clientId}&client_secret=${clientSecret}&v=20181015`;
-
-		// 	fetch(url)
-		//     .then(response => response.json())
-		//     .then(data => this.setState({ data: data}));
-		// }
-	}
-
-	fetchLocationDetail(id) {
-		console.log('fetching: ' + id)
-		return;
-		const clientId = 'LXGA0JVZIPS4YMLFKR51V5KEFQJZ4ILY33LW4J4RTZQBLT42';
-		const clientSecret = 'LNSDFUA5TWGXOQRM45LB44W4R1KWL0QI25R4YOHP1AFYNLER'
-		const url = `https://api.foursquare.com/v2/venues/${id}?client_id=${clientId}&client_secret=${clientSecret}&v=20181015`;
-
-		fetch(url)
-	    .then(response => response.json())
-	    .then(data => {
-	    	if (data && data.meta && data.meta.code === 200) {
-	    		this.setState({ venueInfo: data.response.venue });
-	    	} else {
-	    		this.setState({ venueInfo: { error: true } });
-	    	}
-	    });
-	    //.then(data => this.setState({ data: data}));
-		
 	}
 
 	render() {
-		// const { data } = this.state;
-		// const venue = data.venue ? data.venue : 'N/A';
-		const { location } = this.props;
-		const { venueInfo } = this.state;
+		const { location, clientId, venueInfo } = this.props;
 
 		return (
-			<div>
+			<div className="place-detail">
 				{location &&
-					<h2>{venueInfo.name || location.name}</h2>
+					<a href={venueInfo.canonicalUrl + `?ref=${clientId}`} target="blank">
+						<h2>{venueInfo.name || location.name}</h2>
+					</a>
 				}
 				{venueInfo.error && <span>Details could not be loaded.</span>}
 				{!venueInfo.name && !venueInfo.error && <span>Loading detail...</span>}
 				{venueInfo.name &&
 					<div id="venue-info">
+						{venueInfo.description &&
+							<p>{venueInfo.description}</p>
+						}
 						{venueInfo.contact && venueInfo.contact.formattedPhone &&
 							<div id="contact-info">
 								<label htmlFor="venue-contact">Contact:</label>
