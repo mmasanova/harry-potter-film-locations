@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import attributionLogo from '../powered-by-foursquare-grey.svg';
 
 class PlaceDetail extends Component {
 	state = {
@@ -34,17 +35,6 @@ class PlaceDetail extends Component {
 				{!venueInfo.name && !venueInfo.error && <span>Loading detail...</span>}
 				{venueInfo.name &&
 					<div id="venue-info">
-						{venueInfo.description &&
-							<p>{venueInfo.description}</p>
-						}
-						{venueInfo.contact && venueInfo.contact.formattedPhone &&
-							<div id="contact-info">
-								<label htmlFor="venue-contact">Contact:</label>
-								<div id="venue-contact">
-									{venueInfo.contact.formattedPhone}
-								</div>
-							</div>
-						}
 						{ venueInfo.location && venueInfo.location.formattedAddress &&
 							<div id="address">
 								<label htmlFor="venue-address">Address:</label>
@@ -55,6 +45,9 @@ class PlaceDetail extends Component {
 								</div>
 							</div>
 						}
+						<img 
+							className="attribution-logo-small"
+							src={attributionLogo} />
 					</div>
 				}
 			</div>

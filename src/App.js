@@ -213,7 +213,11 @@ class App extends Component {
             </div>
           }
           { activeMarker &&
-              <DetailWindow />
+              <DetailWindow 
+                venueInfo={venueInfo} 
+                clientId={this.clientId}
+                locationName={activeLocation ? activeLocation.name : ''}
+              />
           }
         </div>
       </div>

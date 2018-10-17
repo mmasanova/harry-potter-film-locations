@@ -6,7 +6,6 @@ html, body {
 }
 
 .App {
-  text-align: center;
   height: 100vh;
   width: 100vw;
   /*display: flex;
@@ -136,6 +135,58 @@ html, body {
   font-weight: 500;
 }
 
+/* Detail Window */
+
+.detail-window h2 {
+  margin: 0;
+  font-weight: normal;
+  color: #6B0000;
+  padding: 0.5em;
+  border-bottom: 1px solid #D8D8D1;
+}
+
+.detail-window a {
+  text-decoration: none;
+  color: #6B0000;
+}
+
+.detail-window img {
+  margin: auto;
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  padding: 1em;
+  box-sizing: border-box;
+}
+
+.detail-window p {
+  padding: 0em 1em;
+  margin: 0;
+  text-align: justify;
+}
+
+.detail-window label {
+  float: left;
+  padding: 1em;
+  font-weight: 500;
+}
+
+#venue-contact {
+  padding: 1em;
+}
+
+/* Attribution logos */
+
+.attribution-logo {
+  padding: 1em 1em 2em 1em;
+}
+
+.attribution-logo-small {
+  margin: 0;
+  padding: 1.2em 0 0 0;
+  height: 10px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -159,7 +210,7 @@ html, body {
     width: calc(100vw - 300px);
   }
 
-  .list {
+  .list, .detail-window {
     width: 50vw;
     max-width: 300px;
     flex: 1 1;
