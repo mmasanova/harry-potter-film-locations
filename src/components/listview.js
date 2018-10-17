@@ -6,7 +6,7 @@ export class ListView extends Component  {
 			const location = this.props.activeLocation;
 			const selectedLi = document.getElementById(location.id)
 
-			//if (selectedLi) selectedLi.scrollIntoView();
+			if (selectedLi && this.props.scrollToView) selectedLi.scrollIntoView();
 		}
 	}
 

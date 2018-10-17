@@ -14,6 +14,7 @@ class App extends Component {
     activeMarker: {},
     activeLocation: {},
     showInfoWindow: true,
+    scrollItemToView: false,
     movies: data.movies,
     locations: data.locations
   }
@@ -83,7 +84,8 @@ class App extends Component {
     this.setState({ 
       activeMarker: marker,
       showInfoWindow: true,
-      activeLocation: props.location
+      activeLocation: props.location,
+      scrollItemToView: true
     });
   }
 
@@ -91,7 +93,8 @@ class App extends Component {
     this.setState({
       activeMarker: null,
       activeLocation: {},
-      showInfoWindow: false
+      showInfoWindow: false,
+      scrollItemToView: false
     });
   }
 
@@ -106,6 +109,10 @@ class App extends Component {
         location: location
       }, location.marker);
     }
+
+    this.setState({
+      scrollItemToView: false
+    });
   }
 
   onMarkerCreated = (props, marker) => {
@@ -137,7 +144,8 @@ class App extends Component {
     const { 
       locations, 
       filterValue, 
-      showInfoWindow, 
+      showInfoWindow,
+      scrollItemToView,
       activeMarker, 
       activeLocation,
       mapCenter,
@@ -172,6 +180,7 @@ class App extends Component {
               locations={locations}
               activeLocation={activeLocation}
               itemClick={this.onListItemClick}
+              scrollToView={scrollItemToView}
             />
           </div>
         </div>
