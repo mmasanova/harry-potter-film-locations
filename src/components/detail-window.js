@@ -13,12 +13,16 @@ class DetailWindow extends Component {
 		}
 
 		if (movie) {
-			movieNames = movie.map(movieValue => {
-				const index = movies.findIndex(thisMovie => movieValue === thisMovie.value);
-				const returnValue = (index !== -1) ? movies[index].name : movieValue;
+			if (movie.length === movies.length) {
+				movieNames = 'Featured in all Harry Potter movies';
+			} else {
+				movieNames = movie.map(movieValue => {
+					const index = movies.findIndex(thisMovie => movieValue === thisMovie.value);
+					const returnValue = (index !== -1) ? movies[index].name : movieValue;
 
-				return returnValue;
-			}).join(', ');
+					return returnValue;
+				}).join(', ');
+			}
 		}
 
 		return (
@@ -49,9 +53,10 @@ class DetailWindow extends Component {
 						</div>
 					</div>
 				}
-				<img 
+				{venueInfo.name && <img 
 					className="attribution-logo"
 					src={attributionLogo} />
+				}
 			</div>
 		)
 	}
