@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 
 export class ListView extends Component  {
-	
 	componentDidUpdate(prevProps) {
 		if (prevProps.activeLocation !== this.props.activeLocation) {
 			const location = this.props.activeLocation;
 			const selectedLi = document.getElementById(location.id)
 
-			if (selectedLi) selectedLi.scrollIntoView();
+			//if (selectedLi) selectedLi.scrollIntoView();
 		}
 	}
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Map } from './components/map';
 import { ListView } from './components/listview';
 import { Filter } from './components/filter';
+import Heading from './components/heading';
 import './App.css';
 import data from './data';
 
@@ -146,30 +147,33 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Map 
-          map={map}
-          locations={locations}
-          onMarkerClick={this.onMarkerClick}
-          onMarkerCreated={this.onMarkerCreated}
-          onInfoWindowClose={this.clearActiveMarker}
-          mapCenter={mapCenter}
-          activeMarker={activeMarker}
-          activeLocation={activeLocation}
-          showInfoWindow={showInfoWindow}
-        />
-        <div className="list">
-          <Filter
-            id="location-filter"
-            title="Filter by Movie"
-            value={filterValue}
-            onFilterSelect={this.updateFilterValue}
-            options={movies}
-          />
-          <ListView
+        <Heading title="Harry Potter Films' Locations" />
+        <div className="content">
+          <Map 
+            map={map}
             locations={locations}
+            onMarkerClick={this.onMarkerClick}
+            onMarkerCreated={this.onMarkerCreated}
+            onInfoWindowClose={this.clearActiveMarker}
+            mapCenter={mapCenter}
+            activeMarker={activeMarker}
             activeLocation={activeLocation}
-            itemClick={this.onListItemClick}
+            showInfoWindow={showInfoWindow}
           />
+          <div className="list">
+            <Filter
+              id="location-filter"
+              title="Filter by Movie"
+              value={filterValue}
+              onFilterSelect={this.updateFilterValue}
+              options={movies}
+            />
+            <ListView
+              locations={locations}
+              activeLocation={activeLocation}
+              itemClick={this.onListItemClick}
+            />
+          </div>
         </div>
       </div>
     );

@@ -6,7 +6,9 @@ export class Filter extends Component {
 
 		return (
 			<div className="filter-container">
-				<label htmlFor={id}>
+				<label 
+					className="filter-label"
+					htmlFor={id}>
 					{title}
 				</label>
 				<select 

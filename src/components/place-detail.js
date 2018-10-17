@@ -41,6 +41,7 @@ class PlaceDetail extends Component {
 
 	fetchLocationDetail(id) {
 		console.log('fetching: ' + id)
+		return;
 		const clientId = 'LXGA0JVZIPS4YMLFKR51V5KEFQJZ4ILY33LW4J4RTZQBLT42';
 		const clientSecret = 'LNSDFUA5TWGXOQRM45LB44W4R1KWL0QI25R4YOHP1AFYNLER'
 		const url = `https://api.foursquare.com/v2/venues/${id}?client_id=${clientId}&client_secret=${clientSecret}&v=20181015`;
