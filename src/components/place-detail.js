@@ -47,6 +47,7 @@ class PlaceDetail extends Component {
 						}
 						<img 
 							className="attribution-logo-small"
+							alt="Foursquare attribution logo"
 							src={attributionLogo} />
 					</div>
 				}

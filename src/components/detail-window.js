@@ -3,7 +3,14 @@ import attributionLogo from '../icons/powered-by-foursquare-grey.svg'
 
 class DetailWindow extends Component {
 	render() {
-		const { venueInfo, clientId, locationName, onCloseClick, movie, movies } = this.props;
+		const { 
+			venueInfo, 
+			clientId, 
+			locationName, 
+			onCloseClick, 
+			movie, 
+			movies 
+		} = this.props;
 		let photoUrl;
 		let movieNames;
 
@@ -43,7 +50,7 @@ class DetailWindow extends Component {
 				{movieNames && <div className="location-movie">{movieNames}</div>}
 				{!venueInfo.name && !venueInfo.error && <span>Loading...</span>}
 				{venueInfo.error && <span>Location detail could not be loaded</span>}
-				{photoUrl && <img src={photoUrl} />}
+				{photoUrl && <img src={photoUrl} alt={venueInfo.name} />}
 				{venueInfo.description && <p>{venueInfo.description}</p>}
 				{venueInfo.contact && venueInfo.contact.formattedPhone &&
 					<div id="contact-info">
@@ -55,6 +62,7 @@ class DetailWindow extends Component {
 				}
 				{venueInfo.name && <img 
 					className="attribution-logo"
+					alt="Foursquare attribution logo"
 					src={attributionLogo} />
 				}
 			</div>
