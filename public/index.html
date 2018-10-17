@@ -36,5 +36,15 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script>
+      function gm_authFailure() {
+        const map = document.getElementById('map');
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'map-auth-error';
+        errorDiv.innerHTML = 'Google Maps authentication failed, the map could not be loaded.';
+
+        map.appendChild(errorDiv);
+      }
+    </script>
   </body>
 </html>

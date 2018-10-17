@@ -271,6 +271,8 @@ function loadScript(url) {
   script.src = url;
   script.async = true;
   script.defer = true;
+  script.innerHTML = 'function gm_authFailure() {alert("map auth fail")}';
+
   firstScript.parentNode.insertBefore(script, firstScript);
 }
 

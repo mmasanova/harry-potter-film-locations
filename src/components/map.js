@@ -42,6 +42,7 @@ export class Map extends Component {
 
 		return (
 			<div id="map" className="map-view">
+				<div className="map-error">Map could not be loaded</div>
 				{
 					locations
 					.map(location => (
