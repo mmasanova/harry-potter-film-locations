@@ -176,21 +176,24 @@ class App extends Component {
   }
 
   fetchLocationDetail = (id) => {
-    console.log('fetching: ' + id)
-    //return;
     const url = `https://api.foursquare.com/v2/venues/${id}?client_id=${this.clientId}&client_secret=${this.clientSecret}&v=20181015`;
 
     fetch(url)
-      .then(response => response.json())
+      .then(response => {
+        if (response && response.ok) {
+          return response.json();
+        } else {
+          return { meta: 999 };
+        }
+      })
       .then(data => {
         if (data && data.meta && data.meta.code === 200) {
           this.setState({ venueInfo: data.response.venue });
         } else {
           this.setState({ venueInfo: { error: true } });
         }
-      });
-      //.then(data => this.setState({ data: data}));
-    
+      })
+      .catch(error => this.setState({ venueInfo: { error: true } }));
   }
 
   render() {
