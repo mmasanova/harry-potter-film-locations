@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import ReactDOMServer from 'react-dom/server';
+import { Component } from 'react';
 
 class InfoWindow extends Component {
 	componentDidUpdate(prevProps, prevState) {
@@ -22,8 +21,6 @@ class InfoWindow extends Component {
 	}
 
 	renderInfoWindow() {
-		let { map, mapCenter, location } = this.props;
-		
 		this.infoWindow = new window.google.maps.InfoWindow({
 			content: '<div id="info-window-content"></div>'
 		});
