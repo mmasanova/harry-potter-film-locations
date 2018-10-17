@@ -171,12 +171,22 @@ html, body {
   font-weight: 500;
 }
 
-#venue-contact {
+.detail-window span {
   padding: 1em;
 }
 
 .detail-window-header {
   position: relative;
+}
+
+.location-movie {
+  padding: 1em;
+  color: #90907c;
+}
+
+#venue-contact {
+  padding: 1em;
+  font-style: italic;
 }
 
 .close-detail {

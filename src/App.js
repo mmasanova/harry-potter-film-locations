@@ -87,6 +87,9 @@ class App extends Component {
   }
 
   onMarkerClick = (props, marker) => {
+    const { activeMarker } = this.state;
+    this.setMarkerActive(activeMarker, false);
+
     this.setState({ 
       activeMarker: marker,
       showInfoWindow: true,
@@ -94,14 +97,12 @@ class App extends Component {
       scrollItemToView: true
     });
 
-    this.toogleMarkerBounce(marker, true);
-    this.setMarkerIcon(marker, true);
+    this.setMarkerActive(marker, true);
   }
 
   clearActiveMarker = () => {
     const { activeMarker } = this.state;
-    this.toogleMarkerBounce(activeMarker, false);
-    this.setMarkerIcon(activeMarker, false);
+    this.setMarkerActive(activeMarker, false);
 
     this.setState({
       activeMarker: null,
@@ -128,6 +129,18 @@ class App extends Component {
     });
   }
 
+  setMarkerActive = (marker, active) => {
+    if (marker) {
+      if (active) {
+        this.toogleMarkerBounce(marker, true);
+        this.setMarkerIcon(marker, true);
+      } else {
+        this.toogleMarkerBounce(marker, false);
+        this.setMarkerIcon(marker, false);
+      }
+    }
+  }
+
   toogleMarkerBounce = (marker, bounce) => {
     if (bounce) {
       marker.setAnimation(window.google.maps.Animation.BOUNCE);
@@ -139,7 +152,6 @@ class App extends Component {
   }
 
   setMarkerIcon(marker, active) {
-    //return;
     if (active) {
       marker.setIcon(activeIcon);
     } else {
@@ -235,6 +247,8 @@ class App extends Component {
                 venueInfo={venueInfo} 
                 clientId={this.clientId}
                 locationName={activeLocation ? activeLocation.name : ''}
+                movie={activeLocation ? activeLocation.movie : ''}
+                movies={movies}
                 onCloseClick={this.clearActiveMarker}
               />
           }
