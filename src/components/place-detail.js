@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import attributionLogo from '../powered-by-foursquare-grey.svg';
+import attributionLogo from '../icons/powered-by-foursquare-grey.svg';
 
 class PlaceDetail extends Component {
 	state = {

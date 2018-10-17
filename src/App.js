@@ -42,7 +42,7 @@ class App extends Component {
       zoom: 14
     });
 
-    map.addListener('click', this.onMapClick);
+    map.addListener('click', this.clearActive);
 
     this.setMapBounds(map);
     
@@ -94,7 +94,7 @@ class App extends Component {
     });
   }
 
-  onMapClick = () => {
+  clearActive = () => {
     this.setState({
       activeMarker: null,
       activeLocation: {},
@@ -217,6 +217,7 @@ class App extends Component {
                 venueInfo={venueInfo} 
                 clientId={this.clientId}
                 locationName={activeLocation ? activeLocation.name : ''}
+                onCloseClick={this.clearActive}
               />
           }
         </div>

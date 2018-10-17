@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import attributionLogo from '../powered-by-foursquare-grey.svg'
+import attributionLogo from '../icons/powered-by-foursquare-grey.svg'
 
 class DetailWindow extends Component {
 	render() {
-		const { venueInfo, clientId, locatioName } = this.props;
+		const { venueInfo, clientId, locatioName, onCloseClick } = this.props;
 		let photoUrl;
 
 		if (venueInfo && venueInfo.bestPhoto) {
@@ -14,9 +14,16 @@ class DetailWindow extends Component {
 		return (
 			<div className="detail-window">
 				{venueInfo.name &&
-					<a href={venueInfo.canonicalUrl + `?ref=${clientId}`} target="blank">
-						<h2>{venueInfo.name || locatioName}</h2>
-					</a>
+					<div className="detail-window-header">
+						<a href={venueInfo.canonicalUrl + `?ref=${clientId}`} target="blank">
+							<h2>{venueInfo.name || locatioName}</h2>
+						</a>
+						<button 
+							onClick={onCloseClick}
+							className="close-detail">
+							Close
+						</button>
+					</div>
 				}
 				{!venueInfo.name && !venueInfo.error && <span>Loading...</span>}
 				{venueInfo.error && <span>Location detail could not be loaded</span>}
