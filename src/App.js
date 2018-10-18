@@ -46,8 +46,8 @@ class App extends Component {
 		map.addListener('click', this.clearActiveMarker);
 
 		this.setMapBounds(map);
-		
-		this.setState({ 
+
+		this.setState({
 			map: map
 		});
 	}
@@ -90,7 +90,7 @@ class App extends Component {
 		const { activeMarker } = this.state;
 		this.setMarkerActive(activeMarker, false);
 
-		this.setState({ 
+		this.setState({
 			venueInfo: {},
 			activeMarker: marker,
 			showInfoWindow: true,
@@ -180,33 +180,33 @@ class App extends Component {
 	}
 
 	fetchLocationDetail = (id) => {
-	const url = `https://api.foursquare.com/v2/venues/${id}?client_id=${this.clientId}&client_secret=${this.clientSecret}&v=20181015`;
+		const url = `https://api.foursquare.com/v2/venues/${id}?client_id=${this.clientId}&client_secret=${this.clientSecret}&v=20181015`;
 
-	fetch(url)
-	.then(response => {
-		if (response && response.ok) {
-			return response.json();
-		} else {
-			return { meta: 999 };
-		}
-	})
-	.then(data => {
-		if (data && data.meta && data.meta.code === 200) {
-			this.setState({ venueInfo: data.response.venue });
-		} else {
-			this.setState({ venueInfo: { error: true } });
-		}
-	})
-	.catch(error => this.setState({ venueInfo: { error: true } }));
+		fetch(url)
+		.then(response => {
+			if (response && response.ok) {
+				return response.json();
+			} else {
+				return { meta: 999 };
+			}
+		})
+		.then(data => {
+			if (data && data.meta && data.meta.code === 200) {
+				this.setState({ venueInfo: data.response.venue });
+			} else {
+				this.setState({ venueInfo: { error: true } });
+			}
+		})
+		.catch(error => this.setState({ venueInfo: { error: true } }));
 	}
 
 	render() {
-	const { 
-		locations, 
-		filterValue, 
+	const {
+		locations,
+		filterValue,
 		showInfoWindow,
 		scrollItemToView,
-		activeMarker, 
+		activeMarker,
 		activeLocation,
 		mapCenter,
 		map,
@@ -218,7 +218,7 @@ class App extends Component {
 		<div className="App">
 		<Heading title="Harry Potter Films' Locations" />
 		<main className="content">
-		<Map 
+		<Map
 		map={map}
 		locations={locations}
 		onMarkerClick={this.onMarkerClick}
@@ -231,7 +231,7 @@ class App extends Component {
 		showInfoWindow={showInfoWindow}
 		clientId={this.clientId}
 		/>
-		{ !activeLocation && 
+		{ !activeLocation &&
 			<div className="list">
 			<Filter
 			id="location-filter"
@@ -250,8 +250,8 @@ class App extends Component {
 			</div>
 		}
 		{ activeLocation &&
-			<DetailWindow 
-			venueInfo={venueInfo} 
+			<DetailWindow
+			venueInfo={venueInfo}
 			clientId={this.clientId}
 			locationName={activeLocation ? activeLocation.name : ''}
 			movie={activeLocation ? activeLocation.movie : ''}
@@ -265,7 +265,7 @@ class App extends Component {
 	}
 }
 
-/** 
+/**
 * @description loads external script asynchronously
 * @param {string} url - The url to load
 */

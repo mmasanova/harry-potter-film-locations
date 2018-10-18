@@ -12,11 +12,19 @@ class DetailWindow extends Component {
 			movies
 		} = this.props;
 		let photoUrl;
+		let srcSet;
 		let movieNames;
 
 		if (venueInfo && venueInfo.bestPhoto) {
 			const bestPhoto = venueInfo.bestPhoto;
-			photoUrl = `${bestPhoto.prefix}width300${bestPhoto.suffix}`;
+
+			// Retrieve different size for 1x and 2x resolutions,
+			// 500 is max width specified, so we retrieve original image for 2x and bigger
+			const photoUrl1X = `${bestPhoto.prefix}width300${bestPhoto.suffix}`;
+			const photoUrl2X = `${bestPhoto.prefix}original${bestPhoto.suffix}`;
+
+			photoUrl = photoUrl2X;
+			srcSet = `${photoUrl1X} 1x, ${photoUrl2X} 2x`;
 		}
 
 		if (movie) {
@@ -59,7 +67,10 @@ class DetailWindow extends Component {
 					<span>Location detail could not be loaded</span>
 				}
 				{photoUrl &&
-					<img src={photoUrl} alt={venueInfo.name} />
+					<img
+						src={photoUrl}
+						srcSet={srcSet}
+						alt={venueInfo.name} />
 				}
 				{venueInfo.description &&
 					<p>{venueInfo.description}</p>
