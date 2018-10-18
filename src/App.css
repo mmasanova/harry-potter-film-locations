@@ -144,6 +144,10 @@ html, body {
   max-width: 70vw;
 }
 
+.place-detail h2 {
+  margin: 0 0 0.5em 0;
+}
+
 .place-detail a {
   color: #6B0000;
   cursor: pointer;
@@ -201,7 +205,7 @@ html, body {
 
 .location-movie {
   padding: 1em;
-  color: #90907c;
+  color: #777767;
 }
 
 #venue-contact {

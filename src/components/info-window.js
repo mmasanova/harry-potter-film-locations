@@ -18,11 +18,11 @@ class InfoWindow extends Component {
 	}
 
 	openWindow() {
-		this.infoWindow.open(this.props.map, this.props.marker);
+		if (this.infoWindow) this.infoWindow.open(this.props.map, this.props.marker);
 	}
 
 	closeWindow() {
-		this.infoWindow.close();
+		if (this.infoWindow) this.infoWindow.close();
 	}
 
 	renderInfoWindow() {
@@ -30,11 +30,13 @@ class InfoWindow extends Component {
 			content: '<div id="info-window-content"></div>'
 		});
 
-		const eventNames = [ 'domready', 'closeclick' ];
+		if (this.infoWindow) {
+			const eventNames = [ 'domready', 'closeclick' ];
 
-		eventNames.forEach(e => {
-			this.infoWindow.addListener(e, this.handleEvent(e));
-		});
+			eventNames.forEach(e => {
+				this.infoWindow.addListener(e, this.handleEvent(e));
+			});
+		}
 	}
 
 	handleEvent(evt) {

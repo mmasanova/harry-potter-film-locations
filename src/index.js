@@ -9,4 +9,15 @@ ReactDOM.render(<App />, document.getElementById('root'));
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+serviceWorker.register({
+	onReady: function() {
+		console.log('service worker ready');
+		this.addEventListener('fetch', function(event) { console.log('fetch');});
+	},
+	onSuccess: function(reg) {
+		console.log('service worker registration success');
+	},
+	onUpdate: function(reg) {
+		console.log('service worker updated');
+	}
+});

@@ -91,6 +91,7 @@ class App extends Component {
     this.setMarkerActive(activeMarker, false);
 
     this.setState({ 
+      venueInfo: {},
       activeMarker: marker,
       showInfoWindow: true,
       activeLocation: props.location,
@@ -98,6 +99,7 @@ class App extends Component {
     });
 
     this.setMarkerActive(marker, true);
+    this.fetchLocationDetail(props.location.id);
   }
 
   clearActiveMarker = () => {
@@ -127,6 +129,8 @@ class App extends Component {
     this.setState({
       scrollItemToView: false
     });
+
+    this.fetchLocationDetail(locationId);
   }
 
   setMarkerActive = (marker, active) => {
@@ -225,10 +229,9 @@ class App extends Component {
             activeLocation={activeLocation}
             venueInfo={venueInfo}
             showInfoWindow={showInfoWindow}
-            onInfoWindowUpdate={this.fetchLocationDetail}
             clientId={this.clientId}
           />
-          { !activeMarker && 
+          { !activeLocation && 
             <div className="list">
               <Filter
                 id="location-filter"
@@ -246,7 +249,7 @@ class App extends Component {
               />
             </div>
           }
-          { activeMarker &&
+          { activeLocation &&
               <DetailWindow 
                 venueInfo={venueInfo} 
                 clientId={this.clientId}

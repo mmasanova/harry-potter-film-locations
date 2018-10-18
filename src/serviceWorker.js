@@ -43,6 +43,8 @@ export function register(config) {
             'This web app is being served cache-first by a service ' +
               'worker. To learn more, visit https://goo.gl/SC7cgQ'
           );
+
+          config.onReady();
         });
       } else {
         // Is not local host. Just register service worker
@@ -56,6 +58,11 @@ function registerValidSW(swUrl, config) {
   navigator.serviceWorker
     .register(swUrl)
     .then(registration => {
+
+      navigator.serviceWorker.addEventListener('fetch', function(event) {
+        console.log('fetch');
+      });
+
       registration.onupdatefound = () => {
         const installingWorker = registration.installing;
         installingWorker.onstatechange = () => {

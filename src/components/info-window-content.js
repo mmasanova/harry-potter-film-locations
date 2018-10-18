@@ -1,24 +1,20 @@
 import React, { Component } from 'react';
 import attributionLogo from '../icons/powered-by-foursquare-grey.svg';
 
-class PlaceDetail extends Component {
-	state = {
-		venueInfo: {}
-	}
-
+class InfoWindowContent extends Component {
 	componentDidMount() {
-		const { location, onInfoWindowUpdate } = this.props;
+		// const { location, onInfoWindowUpdate } = this.props;
 		
-		if (location && location.id) onInfoWindowUpdate(location.id);
+		// if (location && location.id) onInfoWindowUpdate(location.id);
 	}
 
 	componentDidUpdate(prevProps) {
-		const prevLocation = prevProps.location ? prevProps.location : {};
-		const currLocation = this.props.location ? this.props.location : {};
+		// const prevLocation = prevProps.location ? prevProps.location : {};
+		// const currLocation = this.props.location ? this.props.location : {};
 
-		if (prevLocation.id !== currLocation.id) {
-			this.props.onInfoWindowUpdate(currLocation.id);
-		}
+		// if (prevLocation.id !== currLocation.id) {
+		// 	this.props.onInfoWindowUpdate(currLocation.id);
+		// }
 	}
 
 	render() {
@@ -58,4 +54,4 @@ class PlaceDetail extends Component {
 	}
 }
 
-export default PlaceDetail;
+export default InfoWindowContent;
