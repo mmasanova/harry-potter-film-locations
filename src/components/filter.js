@@ -6,19 +6,19 @@ export class Filter extends Component {
 
 		return (
 			<div className="filter-container">
-				<label 
+				<label
 					className="filter-label"
 					htmlFor={id}>
 					{title}
 				</label>
-				<select 
+				<select
 					id={id}
 					defaultValue={value}
 					onChange={(event) => onFilterSelect(event.target.value)}>
 					<option value="">Any</option>
 					{
 						options.map(option => (
-							<option 
+							<option
 								key={option.value}
 								value={option.value}>
 								{option.name}

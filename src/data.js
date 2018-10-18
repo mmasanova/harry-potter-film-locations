@@ -216,6 +216,6 @@ const data = {
       { value: 7, name: 'Harry Potter and the Deathly Hallows Part 1' },
       { value: 8, name: 'Harry Potter and the Deathly Hallows Part 2' }
     ]
-}
+};
 
 export default data;

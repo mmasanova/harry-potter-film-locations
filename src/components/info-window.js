@@ -9,7 +9,11 @@ class InfoWindow extends Component {
 
 		if (this.props.visible !== prevProps.visible ||
 			this.props.marker !== prevProps.marker) {
-			this.props.visible ? this.openWindow() : this.closeWindow();
+			if (this.props.visible) {
+				this.openWindow();
+			} else {
+				this.closeWindow();
+			}
 		}
 
 		if (this.props.venueInfo !== prevProps.venueInfo) {
@@ -42,12 +46,12 @@ class InfoWindow extends Component {
 
 	handleEvent(evt) {
 		return (e) => {
-			const eventName = `on${camelize(evt)}`
+			const eventName = `on${camelize(evt)}`;
 
 			if (this.props[eventName]) {
 				this.props[eventName](this.props, this.marker, e);
 			}
-		}
+		};
 	}
 
 	render() {

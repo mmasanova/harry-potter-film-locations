@@ -8,7 +8,7 @@ class InfoWindowContent extends Component {
 
 	componentDidMount() {
 		const { location, onInfoWindowUpdate } = this.props;
-		
+
 		if (location && location.id) onInfoWindowUpdate(location.id);
 	}
 
@@ -47,7 +47,7 @@ class InfoWindowContent extends Component {
 								</div>
 							</div>
 						}
-						<img 
+						<img
 							className="attribution-logo-small"
 							alt="Foursquare attribution logo"
 							src={attributionLogo} />

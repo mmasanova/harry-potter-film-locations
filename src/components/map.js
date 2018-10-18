@@ -17,9 +17,9 @@ export class Map extends Component {
 
 		if (contentDiv) {
 			ReactDom.render((
-				<InfoWindowContent 
+				<InfoWindowContent
 					location={this.location}
-					venueInfo={this.venueInfo} 
+					venueInfo={this.venueInfo}
 					clientId={this.clientId}
 				/>
 			), contentDiv);
@@ -27,14 +27,14 @@ export class Map extends Component {
 	}
 
 	render () {
-		const { 
-			locations, 
-			map, 
-			onMarkerClick, 
-			mapCenter, 
-			activeMarker, 
-			showInfoWindow, 
-			activeLocation, 
+		const {
+			locations,
+			map,
+			onMarkerClick,
+			mapCenter,
+			activeMarker,
+			showInfoWindow,
+			activeLocation,
 			onInfoWindowClose,
 			onMarkerCreated,
 			venueInfo,
@@ -42,10 +42,10 @@ export class Map extends Component {
 		} = this.props;
 
 		return (
-			<div 
-				id="map" 
+			<div
+				id="map"
 				className="map-view"
-				aria-label="Map of Harry Potter film locations in UK" 
+				aria-label="Map of Harry Potter film locations in UK"
 				role="application">
 					<div className="map-error">Map could not be loaded</div>
 					{
@@ -53,7 +53,7 @@ export class Map extends Component {
 						.map(location => (
 							<Marker
 								visible={location.visible}
-								key={location.id} 
+								key={location.id}
 								map={map}
 								mapCenter={mapCenter}
 								position={location.position}
@@ -63,7 +63,7 @@ export class Map extends Component {
 							/>
 						))
 					}
-				<InfoWindow 
+				<InfoWindow
 					marker={activeMarker}
 					map={map}
 					visible={showInfoWindow}

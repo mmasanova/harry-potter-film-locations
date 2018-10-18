@@ -2,21 +2,6 @@ import React, { Component } from 'react';
 import attributionLogo from '../icons/powered-by-foursquare-grey.svg';
 
 class InfoWindowContent extends Component {
-	componentDidMount() {
-		// const { location, onInfoWindowUpdate } = this.props;
-		
-		// if (location && location.id) onInfoWindowUpdate(location.id);
-	}
-
-	componentDidUpdate(prevProps) {
-		// const prevLocation = prevProps.location ? prevProps.location : {};
-		// const currLocation = this.props.location ? this.props.location : {};
-
-		// if (prevLocation.id !== currLocation.id) {
-		// 	this.props.onInfoWindowUpdate(currLocation.id);
-		// }
-	}
-
 	render() {
 		const { location, clientId, venueInfo } = this.props;
 
@@ -43,7 +28,7 @@ class InfoWindowContent extends Component {
 								</div>
 							</div>
 						}
-						<img 
+						<img
 							className="attribution-logo-small"
 							alt="Foursquare attribution logo"
 							src={attributionLogo} />

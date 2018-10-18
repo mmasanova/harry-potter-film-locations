@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 /**
-* Listbox accessibility features are based on: 
-* https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/listbox_role 
+* Listbox accessibility features are based on:
+* https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/listbox_role
 */
 
 export class ListView extends Component  {
@@ -26,7 +26,7 @@ export class ListView extends Component  {
 	setActiveItemFocus() {
 		if (this.state.focusedItem) {
 			const element = document.getElementById(this.state.focusedItem);
-			
+
 			element.focus();
 			element.scrollIntoView({block: "nearest"});
 		}
@@ -69,7 +69,7 @@ export class ListView extends Component  {
 		};
 
 		const focusedItem = document.getElementById(this.state.focusedItem);
-		
+
 		switch (e.keyCode) {
 			case keys.down:
 				if (focusedItem.nextSibling) {
@@ -96,7 +96,7 @@ export class ListView extends Component  {
 			case keys.space:
 			case keys.enter:
 				this.props.itemClick(this.state.focusedItem);
-				
+
 				break;
 
 			default:
@@ -110,7 +110,7 @@ export class ListView extends Component  {
 		const activeLocationId = activeLocation ? activeLocation.id : '';
 
 		return (
-			<ul 
+			<ul
 				id={id}
 				className="list-view"
 				role="listbox"
@@ -133,8 +133,8 @@ export class ListView extends Component  {
 						}
 
 						return (
-							location.visible && 
-							<li 
+							location.visible &&
+							<li
 								id={location.id}
 								key={location.name}
 								className={classNames.join(' ')}

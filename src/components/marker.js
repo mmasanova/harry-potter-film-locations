@@ -14,7 +14,7 @@ class Marker extends Component {
 	componentDidUpdate(prevProps) {
 		if (this.props.map !== prevProps.map ||
 			this.props.position !== prevProps.position) {
-			this.renderMarker();	
+			this.renderMarker();
 		} else if (this.props.visible !== prevProps.visible) {
 			if (this.props.visible) {
 				this.marker.setMap(this.props.map);
@@ -47,12 +47,12 @@ class Marker extends Component {
 
 	handleEvent(evt) {
 		return (e) => {
-			const eventName = `on${camelize(evt)}`
+			const eventName = `on${camelize(evt)}`;
 
 			if (this.props[eventName]) {
 				this.props[eventName](this.props, this.marker, e);
 			}
-		}
+		};
 	}
 
 	render() {
@@ -64,6 +64,6 @@ Marker.propTypes = {
 	position: PropTypes.object,
 	map: PropTypes.object,
 	onCreate: PropTypes.func
-}
+};
 
 export default Marker;
