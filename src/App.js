@@ -29,6 +29,9 @@ class App extends Component {
 		this.renderMap();
 	}
 
+	/**
+	* @description Render Google Maps API map
+	*/
 	renderMap = () => {
 		loadScript('https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyDMPqq_XkqrIrZ2aMM34Ovk-DC-9GpCuxY&callback=initMap');
 		window.initMap = this.initMap;
@@ -66,6 +69,10 @@ class App extends Component {
 		map.fitBounds(bounds);
 	}
 
+	/**
+	* @description On filter change set selectedValue and set locations' visible attribute
+	* based on the filter value
+	*/
 	updateFilterValue = (selectedValue) => {
 		this.setState(function(prevState) {
 			let locations = prevState.locations;
@@ -86,6 +93,9 @@ class App extends Component {
 		});
 	}
 
+	/**
+	* @description Handle marker click event, set it to active and fetch location
+	*/
 	onMarkerClick = (props, marker) => {
 		const { activeMarker } = this.state;
 		this.setMarkerActive(activeMarker, false);
@@ -102,6 +112,9 @@ class App extends Component {
 		this.fetchLocationDetail(props.location.id);
 	}
 
+	/**
+	* @description Clear active marker
+	*/
 	clearActiveMarker = () => {
 		const { activeMarker } = this.state;
 		this.setMarkerActive(activeMarker, false);
@@ -114,6 +127,9 @@ class App extends Component {
 		});
 	}
 
+	/*/
+	* @description Handle list item click, set state and fetch location detail
+	*/
 	onListItemClick = (locationId) => {
 		const locations = this.state.locations;
 		const locationIndex = locations.findIndex(loc => loc.id === locationId);
@@ -133,6 +149,9 @@ class App extends Component {
 		this.fetchLocationDetail(locationId);
 	}
 
+	/**
+	* @description Toggle marker icon and bounce
+	*/
 	setMarkerActive = (marker, active) => {
 		if (marker) {
 			if (active) {
@@ -145,6 +164,9 @@ class App extends Component {
 		}
 	}
 
+	/**
+	* @description Toggle marker bouncing
+	*/
 	toogleMarkerBounce = (marker, bounce) => {
 		if (bounce) {
 			marker.setAnimation(window.google.maps.Animation.BOUNCE);
@@ -155,6 +177,9 @@ class App extends Component {
 		}
 	}
 
+	/**
+	* @description Toggle marker's icon
+	*/
 	setMarkerIcon(marker, active) {
 		if (active) {
 			marker.setIcon(activeIcon);
@@ -163,6 +188,9 @@ class App extends Component {
 		}
 	}
 
+	/**
+	* @description When a marker is created attach its reference to corresponding locations item
+	*/
 	onMarkerCreated = (props, marker) => {
 		const { location } = props;
 
@@ -179,6 +207,9 @@ class App extends Component {
 		});
 	}
 
+	/**
+	* @description Fetch location detail from foursquare API and update state
+	*/
 	fetchLocationDetail = (id) => {
 		const url = `https://api.foursquare.com/v2/venues/${id}?client_id=${this.clientId}&client_secret=${this.clientSecret}&v=20181015`;
 

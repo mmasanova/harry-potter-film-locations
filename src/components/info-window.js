@@ -22,14 +22,23 @@ class InfoWindow extends Component {
 		}
 	}
 
+	/**
+	* @description Open info window
+	*/
 	openWindow() {
 		if (this.infoWindow) this.infoWindow.open(this.props.map, this.props.marker);
 	}
 
+	/**
+	* @description Close info window
+	*/
 	closeWindow() {
 		if (this.infoWindow) this.infoWindow.close();
 	}
 
+	/**
+	* @description Initialise info window
+	*/
 	renderInfoWindow() {
 		this.infoWindow = new window.google.maps.InfoWindow({
 			content: '<div id="info-window-content"></div>'
@@ -44,6 +53,9 @@ class InfoWindow extends Component {
 		}
 	}
 
+	/**
+	* @description Handle info window event
+	*/
 	handleEvent(evt) {
 		return (e) => {
 			const eventName = `on${camelize(evt)}`;

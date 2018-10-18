@@ -5,6 +5,9 @@ import { camelize } from './utils';
 const eventNames = [ 'click', 'mouseover' ];
 
 class Marker extends Component {
+	/**
+	* @description Remove marker from map when component unmounts
+	*/
 	componentWillUnmount() {
 		if (this.marker) {
 			this.marker.setMap(null);
@@ -14,8 +17,10 @@ class Marker extends Component {
 	componentDidUpdate(prevProps) {
 		if (this.props.map !== prevProps.map ||
 			this.props.position !== prevProps.position) {
+			// Initialize marker
 			this.renderMarker();
 		} else if (this.props.visible !== prevProps.visible) {
+			// Toggle marker visibility based on the visible prop
 			if (this.props.visible) {
 				this.marker.setMap(this.props.map);
 			} else {
@@ -24,6 +29,9 @@ class Marker extends Component {
 		}
 	}
 
+	/**
+	* @description Create and render a google maps api marker
+	*/
 	renderMarker() {
 		let { position, mapCenter, map, visible, onCreate } = this.props;
 		let pos = position || mapCenter;
@@ -45,6 +53,9 @@ class Marker extends Component {
 		});
 	}
 
+	/**
+	* @description Handle a marker event
+	*/
 	handleEvent(evt) {
 		return (e) => {
 			const eventName = `on${camelize(evt)}`;
