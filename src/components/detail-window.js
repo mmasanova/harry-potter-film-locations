@@ -33,12 +33,14 @@ class DetailWindow extends Component {
 		}
 
 		return (
-			<div className="detail-window">
-				<div className="detail-window-header">
+			<section className="detail-window">
+				<header className="detail-window-header">
 					{venueInfo.name &&
-						<a href={venueInfo.canonicalUrl + `?ref=${clientId}`} target="blank">
-							<h2>{venueInfo.name || locationName}</h2>
-						</a>
+						<h2>
+							<a href={venueInfo.canonicalUrl + `?ref=${clientId}`} target="blank">
+								{venueInfo.name || locationName}
+							</a>
+						</h2>
 					}
 					{venueInfo.error && <h2>{locationName}</h2>}
 					<button 
@@ -46,12 +48,22 @@ class DetailWindow extends Component {
 						className="close-detail">
 						Close
 					</button>
-				</div>
-				{movieNames && <div className="location-movie">{movieNames}</div>}
-				{!venueInfo.name && !venueInfo.error && <span>Loading...</span>}
-				{venueInfo.error && <span>Location detail could not be loaded</span>}
-				{photoUrl && <img src={photoUrl} alt={venueInfo.name} />}
-				{venueInfo.description && <p>{venueInfo.description}</p>}
+				</header>
+				{movieNames && 
+					<div className="location-movie">Movies: {movieNames}</div>
+				}
+				{!venueInfo.name && !venueInfo.error && 
+					<span>Loading...</span>
+				}
+				{venueInfo.error && 
+					<span>Location detail could not be loaded</span>
+				}
+				{photoUrl && 
+					<img src={photoUrl} alt={venueInfo.name} />
+				}
+				{venueInfo.description && 
+					<p>{venueInfo.description}</p>
+				}
 				{venueInfo.contact && venueInfo.contact.formattedPhone &&
 					<div id="contact-info">
 						<label htmlFor="venue-contact">Contact:</label>
@@ -65,7 +77,7 @@ class DetailWindow extends Component {
 					alt="Foursquare attribution logo"
 					src={attributionLogo} />
 				}
-			</div>
+			</section>
 		)
 	}
 }

@@ -140,7 +140,7 @@ html, body {
 
 #info-window-content {
   text-align: left;
-  min-height: 100px;
+  min-height: 65px;
   max-width: 70vw;
 }
 

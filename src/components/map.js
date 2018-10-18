@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Marker from '.\\marker'
-import InfoWindow from '.\\info-window';
-import PlaceDetail from '.\\place-detail';
+import Marker from './marker'
+import InfoWindow from './info-window';
+import InfoWindowContent from './info-window-content';
 import ReactDom from 'react-dom';
 
 export class Map extends Component {
@@ -15,7 +15,7 @@ export class Map extends Component {
 	onInfoWindowReady() {
 		const contentDiv = document.getElementById('info-window-content');
 		ReactDom.render((
-			<PlaceDetail 
+			<InfoWindowContent 
 				location={this.location}
 				venueInfo={this.venueInfo} 
 				onInfoWindowUpdate={this.onInfoWindowUpdate}
@@ -41,23 +41,27 @@ export class Map extends Component {
 		} = this.props;
 
 		return (
-			<div id="map" className="map-view">
-				<div className="map-error">Map could not be loaded</div>
-				{
-					locations
-					.map(location => (
-						<Marker
-							visible={location.visible}
-							key={location.id} 
-							map={map}
-							mapCenter={mapCenter}
-							position={location.position}
-							location={location}
-							onClick={onMarkerClick}
-							onCreate={onMarkerCreated}
-						/>
-					))
-				}
+			<div 
+				id="map" 
+				className="map-view"
+				aria-label="Map of Harry Potter film locations in UK" 
+				role="application">
+					<div className="map-error">Map could not be loaded</div>
+					{
+						locations
+						.map(location => (
+							<Marker
+								visible={location.visible}
+								key={location.id} 
+								map={map}
+								mapCenter={mapCenter}
+								position={location.position}
+								location={location}
+								onClick={onMarkerClick}
+								onCreate={onMarkerCreated}
+							/>
+						))
+					}
 				<InfoWindow 
 					marker={activeMarker}
 					map={map}

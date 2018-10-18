@@ -22,7 +22,7 @@ class App extends Component {
     locations: data.locations
   }
 
-  clientId = 'xxLXGA0JVZIPS4YMLFKR51V5KEFQJZ4ILY33LW4J4RTZQBLT42';
+  clientId = 'LXGA0JVZIPS4YMLFKR51V5KEFQJZ4ILY33LW4J4RTZQBLT42';
   clientSecret = 'LNSDFUA5TWGXOQRM45LB44W4R1KWL0QI25R4YOHP1AFYNLER';
 
   componentDidMount() {
@@ -213,7 +213,7 @@ class App extends Component {
     return (
       <div className="App">
         <Heading title="Harry Potter Films' Locations" />
-        <div className="content">
+        <main className="content">
           <Map 
             map={map}
             locations={locations}
@@ -256,7 +256,7 @@ class App extends Component {
                 onCloseClick={this.clearActiveMarker}
               />
           }
-        </div>
+        </main>
       </div>
     );
   }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import attributionLogo from '../icons/powered-by-foursquare-grey.svg';
 
-class InfoWindowContent extends Component {
+class PlaceDetail extends Component {
 	state = {
 		venueInfo: {}
 	}
@@ -58,4 +58,4 @@ class InfoWindowContent extends Component {
 	}
 }
 
-export default InfoWindowContent;
+export default PlaceDetail;
