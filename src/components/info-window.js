@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { camelize } from './utils';
 
 class InfoWindow extends Component {
 	componentDidUpdate(prevProps, prevState) {
@@ -52,12 +53,6 @@ class InfoWindow extends Component {
 	render() {
 		return null;
 	}
-}
-
-const camelize = function(str) {
-  return str.split(' ').map(function(word){
-    return word.charAt(0).toUpperCase() + word.slice(1);
-  }).join('');
 }
 
 export default InfoWindow;
