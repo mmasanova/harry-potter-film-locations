@@ -157,6 +157,7 @@ class App extends Component {
 			if (active) {
 				this.toogleMarkerBounce(marker, true);
 				this.setMarkerIcon(marker, true);
+				this.state.map.setCenter(marker.getPosition());
 			} else {
 				this.toogleMarkerBounce(marker, false);
 				this.setMarkerIcon(marker, false);
