@@ -22,8 +22,8 @@ class App extends Component {
 		locations: data.locations
 	}
 
-	clientId = 'LXGA0JVZIPS4YMLFKR51V5KEFQJZ4ILY33LW4J4RTZQBLT42';
-	clientSecret = 'LNSDFUA5TWGXOQRM45LB44W4R1KWL0QI25R4YOHP1AFYNLER';
+	clientId = process.env.REACT_APP_FOURSQUARE_API_CLIENT_ID;
+	clientSecret = process.env.REACT_APP_FOURSQUARE_API_CLIENT_SECRET;
 
 	componentDidMount() {
 		this.renderMap();
@@ -33,7 +33,7 @@ class App extends Component {
 	* @description Render Google Maps API map
 	*/
 	renderMap = () => {
-		loadScript('https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyDMPqq_XkqrIrZ2aMM34Ovk-DC-9GpCuxY&callback=initMap');
+		loadScript(`https://maps.googleapis.com/maps/api/js?v=3&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&callback=initMap`);
 		window.initMap = this.initMap;
 	}
 
