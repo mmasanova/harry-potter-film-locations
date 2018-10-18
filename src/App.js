@@ -14,7 +14,7 @@ class App extends Component {
     mapCenter: { lat: 52.060020, lng: -1.340450 },
     filterValue: '',
     activeMarker: null,
-    activeLocation: {},
+    activeLocation: null,
     venueInfo: {},
     showInfoWindow: true,
     scrollItemToView: false,
@@ -22,7 +22,7 @@ class App extends Component {
     locations: data.locations
   }
 
-  clientId = 'LXGA0JVZIPS4YMLFKR51V5KEFQJZ4ILY33LW4J4RTZQBLT42';
+  clientId = 'xxLXGA0JVZIPS4YMLFKR51V5KEFQJZ4ILY33LW4J4RTZQBLT42';
   clientSecret = 'LNSDFUA5TWGXOQRM45LB44W4R1KWL0QI25R4YOHP1AFYNLER';
 
   componentDidMount() {
@@ -106,7 +106,7 @@ class App extends Component {
 
     this.setState({
       activeMarker: null,
-      activeLocation: {},
+      activeLocation: null,
       showInfoWindow: false,
       scrollItemToView: false
     });
@@ -242,6 +242,7 @@ class App extends Component {
                 activeLocation={activeLocation}
                 itemClick={this.onListItemClick}
                 scrollToView={scrollItemToView}
+                id="locations-list"
               />
             </div>
           }
