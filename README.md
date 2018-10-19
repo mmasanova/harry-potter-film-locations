@@ -8,7 +8,13 @@ My final Udacity Front End Developer Nanodegree project. The application display
   
   2. run `npm install`
   
-  3. run `npm start` (for dev) - this will open the application in your default browser
+  3. create .env file in the root folder and define your API keys:
+
+    REACT_APP_FOURSQUARE_API_CLIENT_ID={your foursquare client id here}
+    REACT_APP_FOURSQUARE_API_CLIENT_SECRET={you foursquare client secret here}
+    REACT_APP_GOOGLE_MAPS_API_KEY={your google maps api key here}
+  
+  4. run `npm start` (for dev) - this will open the application in your default browser
   
      or run `npm run build` and follow instructions printed out
   
