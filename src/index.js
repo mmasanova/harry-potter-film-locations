@@ -12,7 +12,6 @@ ReactDOM.render(<App />, document.getElementById('root'));
 serviceWorker.register({
 	onReady: function() {
 		console.log('service worker ready');
-		this.addEventListener('fetch', function(event) { console.log('fetch');});
 	},
 	onSuccess: function(reg) {
 		console.log('service worker registration success');
