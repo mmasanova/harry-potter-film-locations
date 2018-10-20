@@ -137,6 +137,7 @@ export class ListView extends Component  {
 							<li
 								id={location.id}
 								key={location.name}
+								tabIndex="-1"
 								className={classNames.join(' ')}
 								onClick={() => itemClick(location.id)}
 								role="option"
