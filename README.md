@@ -2,6 +2,8 @@
 
 My final Udacity Front End Developer Nanodegree project. The application displays Harry Potter films' locations within UK on a google map and in a listview that can be filtered by movie. Clicking on a marker or listview item displays more information about the location. The information is retrieved from foursquare API.
 
+[Demo](https://mmasanova.github.io/harry-potter-film-locations/)
+
 ## How to run
 
   1. Clone the respository
